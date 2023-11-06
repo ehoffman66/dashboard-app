@@ -1,38 +1,71 @@
-.App {
-  text-align: center;
+/* Base styling */
+body {
+  font-family: 'Arial', sans-serif; /* Consider using a font like 'Roboto' or 'Poppins' for a modern look */
+  background-color: #F7F8FC; 
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Card styling */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  margin: 20px;
+  padding: 20px;
+  width: calc(25% - 40px); /* assuming you want 4 cards in a row, adjust as needed */
+  box-sizing: border-box;
+  position: relative;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card h2, .card h3 {
+  margin: 0;
 }
+
+.card .title {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.card .data {
+  font-size: 24px;
+  color: #222;
+  font-weight: bold;
+}
+
+/* For the progress circle in 'Left to goal' card */
+.progress-circle {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.progress-circle::before, .progress-circle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+.progress-circle::before {
+  width: 100%;
+  height: 100%;
+  border: 10px solid #E0E0E0;
+}
+
+.progress-circle::after {
+  width: 72%; /* Adjust this for actual progress */
+  height: 72%;
+  border: 10px solid #4CAF50; /* green color for progress, adjust as needed */
+}
+
+/* For bar charts, graphs etc. you might want to consider libraries like Chart.js or D3.js */

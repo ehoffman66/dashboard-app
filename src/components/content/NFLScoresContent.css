@@ -1,0 +1,47 @@
+/* NFLScoresContent.css */
+.nfl-scores-content {
+    width: 100%; /* Full width for the fluid layout */
+    padding: 20px; /* Padding around the grid */
+    box-sizing: border-box; /* Padding included in the width */
+  }
+  
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* Two columns with minimum size 0 */
+    gap: 15px; /* Space between games */
+  }
+  
+  .game {
+    border: 1px solid #eee; /* Light border for each game */
+    border-radius: 8px; /* Rounded corners for the game cards */
+    background: #fff; /* White background for each game card */
+    overflow: hidden; /* Prevents content from spilling out */
+  }
+  
+  .game-status {
+    padding: 10px; /* Padding for status */
+    background: #f2f2f2; /* Different background for status */
+    font-weight: bold;
+  }
+  
+  .team {
+    display: flex;
+    align-items: center;
+    padding: 10px; /* Padding for team info */
+  }
+  
+  .team-logo {
+    width: 40px; /* Slightly larger logo size */
+    height: 40px; /* Maintain aspect ratio */
+    border-radius: 50%; /* Rounded logo */
+    margin-right: 10px; /* Space between logo and team name */
+    object-fit: cover; /* Ensures the image covers the area without stretching */
+    background-color: #f7f7f7; /* Background color in case of transparency in logos */
+  }
+  
+  @media (max-width: 768px) {
+    .games-grid {
+      grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+  }
+  

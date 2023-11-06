@@ -1,0 +1,20 @@
+.bitcoin-price-content {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .bitcoin-price-content h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  .bitcoin-price-content p {
+    color: #666;
+    font-size: 1.25rem;
+  }
+  

@@ -1,0 +1,16 @@
+/* DraggableCard.css */
+
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    cursor: move;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+  }
+  
+  .card-title {
+    font-weight: bold;
+  }
+  
