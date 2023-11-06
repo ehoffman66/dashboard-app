@@ -1,10 +1,12 @@
 /* Dashboard.css */
 .dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 20px;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 20px;
+  background-color: #ece8e8; /* Or any dark color you prefer */
+  color: #0c0202; /* Adjust text color for better readability */
+  min-height: 100vh; /* Ensure it covers the full viewport height */
+}

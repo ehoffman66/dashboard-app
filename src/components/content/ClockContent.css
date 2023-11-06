@@ -1,0 +1,20 @@
+/* ClockContent.css */
+.clock-container {
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .clock-time {
+    font-size: 3rem; /* Large font size for the time */
+    font-weight: bold; /* Make the time bold */
+    color: #5B84B1FF; /* Pop of color for the time */
+    margin-bottom: 8px; /* Space between time and date */
+  }
+  
+  .clock-date {
+    font-size: 1.5rem; /* Smaller font size for the date */
+    color: #333; /* Matching the primary text color */
+  }
+
+  

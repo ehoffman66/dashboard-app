@@ -1,44 +1,25 @@
-import React, { useRef } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
+import React from 'react';
+import Draggable from 'react-draggable';
 import NFLContent from './content/NFLContent';
 import ClockContent from './content/ClockContent';
 import BitcoinPriceContent from './content/BitcoinPriceContent';
-import './DraggableCard.css';
+import './DraggableCard.css'; // Ensure this path is correct
 
-const DraggableCard = ({ id, index, moveCard, content, title }) => {
-  const ref = useRef(null);
+const DraggableCard = ({ id, title, content, position, onControlledDrag }) => {
+  // Function to handle when dragging starts
+  const handleStart = (e, data) => {
+    // This could change the z-index if needed
+  };
 
-  const [{ isDragging }, drag] = useDrag({
-    type: 'card',
-    item: () => ({ id, index }),
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-    end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
-      if (item && dropResult) {
-        moveCard(item.index, dropResult.index);
-      }
-    },
-  });
+  // Function to handle while dragging
+  const handleDrag = (e, data) => {
+    onControlledDrag(id, data.x, data.y);
+  };
 
-  const [, drop] = useDrop({
-    accept: 'card',
-    hover(item, monitor) {
-      if (!ref.current) {
-        return;
-      }
-      const dragIndex = item.index;
-      const hoverIndex = index;
-      if (dragIndex === hoverIndex) {
-        return;
-      }
-      moveCard(dragIndex, hoverIndex);
-      item.index = hoverIndex;
-    },
-  });
-
-  drag(drop(ref));
+  // Function to handle when dragging stops
+  const handleStop = (e, data) => {
+    // This could reset the z-index if changed during start
+  };
 
   const renderContent = () => {
     switch (content) {
@@ -49,15 +30,25 @@ const DraggableCard = ({ id, index, moveCard, content, title }) => {
       case 'Bitcoin':
         return <BitcoinPriceContent />;
       default:
-        return null;
+        return <div>No content available</div>;
     }
   };
 
   return (
-    <div ref={ref} style={{ opacity: isDragging ? 0 : 1 }} className="draggable-card">
-      <div className="card-title">{title}</div>
-      {renderContent()}
-    </div>
+    <Draggable 
+      handle=".card-title" // The part of the card that can be used to drag it
+      defaultPosition={{x: position.x, y: position.y}}
+      position={null} // Not setting position makes the component controlled
+      onStart={handleStart}
+      onDrag={handleDrag}
+      onStop={handleStop}
+      bounds="parent" // Restrict movement within the parent element
+    >
+      <div className="draggable-card">
+        <div className="card-title">{title}</div>
+        {renderContent()}
+      </div>
+    </Draggable>
   );
 };
 

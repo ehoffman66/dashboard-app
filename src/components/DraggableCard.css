@@ -1,21 +1,17 @@
 /* DraggableCard.css */
+
 .draggable-card {
-    background-color: #FFFFFF;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 16px;
-    margin: 8px;
-    transition: opacity 0.2s ease;
-    cursor: grab;
-  }
-  
-  .draggable-card.is-dragging {
-    opacity: 0.4;
-    cursor: grabbing;
-  }
-  
-  .card-title {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-  }
-  
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px;
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: 0 10px 20px rgba(73, 73, 73, 0.35); /* Increase the y-offset and blur-radius */
+  position: relative; /* Keep it relative for positioning within the dashboard */
+  cursor: grab;
+}
+
+/* Enhance the hover effect to lift the card with a bigger shadow */
+.draggable-card:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
