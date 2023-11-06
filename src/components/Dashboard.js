@@ -12,12 +12,15 @@ const Dashboard = () => {
       setCards(savedCards);
     } else {
       // Initialize with default positions if not present in localStorage
-      setCards([
+      const defaultCards = [
         { id: 1, title: 'NFL Scores', content: 'NFL', position: { x: 0, y: 0 }},
         { id: 2, title: 'Current Time', content: 'Clock', position: { x: 100, y: 0 }},
         { id: 3, title: 'Bitcoin Price', content: 'Bitcoin', position: { x: 200, y: 0 }},
+        { id: 4, title: 'NHL Scores', content: 'NHL', position: { x: 300, y: 0 }},
         // ...other cards
-      ]);
+      ];
+      setCards(defaultCards);
+      localStorage.setItem('dashboardCards', JSON.stringify(defaultCards));
     }
   }, []);
 
@@ -35,10 +38,11 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      {cards.map(card => (
+      {cards.map((card, index) => (
         <DraggableCard
           key={card.id}
           id={card.id}
+          index={index}
           title={card.title}
           content={card.content}
           position={card.position}
