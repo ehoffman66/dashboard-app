@@ -1,16 +1,21 @@
 /* DraggableCard.css */
-
-.card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: white;
-    cursor: move;
-    opacity: 1;
+.draggable-card {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 8px;
     transition: opacity 0.2s ease;
+    cursor: grab;
+  }
+  
+  .draggable-card.is-dragging {
+    opacity: 0.4;
+    cursor: grabbing;
   }
   
   .card-title {
-    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
   

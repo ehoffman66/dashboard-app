@@ -1,24 +1,30 @@
 import React, { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
-import NFLContent from './content/NFLContent'; // Make sure these paths are correct
+import NFLContent from './content/NFLContent';
 import ClockContent from './content/ClockContent';
 import BitcoinPriceContent from './content/BitcoinPriceContent';
-import './DraggableCard.css'; // Ensure this path is correct
+import './DraggableCard.css';
 
-const DraggableCard = ({ id, index, moveCard, contentComponent, title }) => {
+const DraggableCard = ({ id, index, moveCard, content, title }) => {
   const ref = useRef(null);
 
   const [{ isDragging }, drag] = useDrag({
     type: 'card',
-    item: { id, index },
+    item: () => ({ id, index }),
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),
+    end: (item, monitor) => {
+      const dropResult = monitor.getDropResult();
+      if (item && dropResult) {
+        moveCard(item.index, dropResult.index);
+      }
+    },
   });
 
   const [, drop] = useDrop({
     accept: 'card',
-    hover(item) {
+    hover(item, monitor) {
       if (!ref.current) {
         return;
       }
@@ -34,8 +40,8 @@ const DraggableCard = ({ id, index, moveCard, contentComponent, title }) => {
 
   drag(drop(ref));
 
-  const renderCardContent = () => {
-    switch (contentComponent) {
+  const renderContent = () => {
+    switch (content) {
       case 'NFL':
         return <NFLContent />;
       case 'Clock':
@@ -43,18 +49,14 @@ const DraggableCard = ({ id, index, moveCard, contentComponent, title }) => {
       case 'Bitcoin':
         return <BitcoinPriceContent />;
       default:
-        return <div>No content available</div>;
+        return null;
     }
   };
 
-  const cardStyle = {
-    opacity: isDragging ? 0.4 : 1,
-  };
-
   return (
-    <div ref={ref} style={cardStyle} className="card">
+    <div ref={ref} style={{ opacity: isDragging ? 0 : 1 }} className="draggable-card">
       <div className="card-title">{title}</div>
-      {renderCardContent()}
+      {renderContent()}
     </div>
   );
 };
