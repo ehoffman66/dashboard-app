@@ -28,7 +28,6 @@ const BitcoinPriceContent = () => {
 
   return (
     <div className="bitcoin-price-content">
-      <h3>Bitcoin Price</h3>
       <p>{formattedPrice}</p>
     </div>
   );
