@@ -4,6 +4,7 @@ import NFLContent from './content/NFLContent';
 import NHLScoresContent from './content/NHLScoresContent';
 import ClockContent from './content/ClockContent';
 import BitcoinPriceContent from './content/BitcoinPriceContent';
+import BookmarkComponent from './content/BookmarkComponent';
 import './DraggableCard.css'; // Ensure this path is correct
 
 // ... other imports
@@ -25,6 +26,8 @@ const DraggableCard = ({ id, title, content, position, onControlledDrag }) => {
         return <BitcoinPriceContent />;
       case 'NHL':
         return <NHLScoresContent />;
+      case 'Bookmark':
+        return <BookmarkComponent />;
       default:
         return <div>No content available</div>;
     }
