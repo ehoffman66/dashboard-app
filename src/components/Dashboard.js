@@ -17,6 +17,7 @@ const Dashboard = () => {
         { id: 2, title: 'Current Time', content: 'Clock', position: { x: 100, y: 0 }},
         { id: 3, title: 'Bitcoin Price', content: 'Bitcoin', position: { x: 200, y: 0 }},
         { id: 4, title: 'NHL Scores', content: 'NHL', position: { x: 300, y: 0 }},
+        { id: 5, title: 'Bookmark', content: 'Bookmark', position: { x: 350, y: 0 }},
         // ...other cards
       ];
       setCards(defaultCards);
