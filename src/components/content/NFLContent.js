@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './NFLScoresContent.css'; // Make sure to import the CSS file
-import './Card.css'; // Import the general card styles
 
 const NFLScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
@@ -13,7 +12,6 @@ const NFLScoresContent = () => {
 
     axios.get(apiEndpoint)
       .then(response => {
-        console.log(response.data); // Log to inspect the structure
         setScoreboard(response.data);
         setLoading(false);
       })
@@ -24,25 +22,43 @@ const NFLScoresContent = () => {
       });
   }, []);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', {
+      weekday: 'short', // "Sat"
+      month: 'short', // "Jun"
+      day: '2-digit', // "01"
+      year: 'numeric', // "2019"
+      hour: '2-digit', // "12"
+      minute: '2-digit', // "00"
+      hour12: true // Use 12-hour format
+    });
+  };
+
   if (loading) return <div>Loading NFL scores...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <div className="nfl-scores-content">
       <div className="games-grid">
-        {scoreboard?.events?.map((event, index) => ( // Use optional chaining
-          <div key={index} className="game">
-            <div className="game-status">{event.status.type.description}</div>
-            {event.competitions[0]?.competitors?.map((team) => (
-              <div key={team.id} className="team">
-                {team.team.logo?.length > 0 && (
-                  <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
-                )}
-                {team.team.displayName} - {team.score}
+        {scoreboard?.events?.map((event, index) => {
+          const isScheduled = event.status.type.description === "Scheduled";
+          return (
+            <div key={index} className="game">
+              <div className="game-status">
+                {isScheduled ? formatDate(event.date) : event.status.type.description}
               </div>
-            ))}
-          </div>
-        ))}
+              {!isScheduled && event.competitions[0]?.competitors?.map((team) => (
+                <div key={team.id} className="team">
+                  {team.team.logo && (
+                    <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
+                  )}
+                  <span>{team.team.displayName} - {team.score || 'TBD'}</span>
+                </div>
+              ))}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
