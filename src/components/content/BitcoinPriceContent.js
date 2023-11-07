@@ -1,34 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import './BitcoinPriceContent.css'; // Make sure this path is correct
+import axios from 'axios';
+import './BitcoinPriceContent.css'; // Ensure this is the correct path to your CSS file
 
 const BitcoinPriceContent = () => {
-  const [bitcoinPrice, setBitcoinPrice] = useState(null);
-
-  // Function to fetch Bitcoin price
-  const fetchBitcoinPrice = async () => {
-    try {
-      // Replace with the actual API endpoint you're using to fetch the Bitcoin price
-      const response = await fetch('https://api.coindesk.com/v1/bpi/currentprice.json');
-      const data = await response.json();
-      setBitcoinPrice(data.bpi.USD.rate_float); // Update state with the new price
-    } catch (error) {
-      console.error('Failed to fetch Bitcoin price:', error);
-    }
-  };
+  const [bitcoinData, setBitcoinData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchBitcoinPrice(); // Fetch price on component mount
-    const intervalId = setInterval(fetchBitcoinPrice, 60000); // Fetch price every 60 seconds
+    const fetchBitcoinPrice = async () => {
+      try {
+        const response = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
+        setBitcoinData(response.data.bpi.USD.rate_float);
+        setLoading(false);
+      } catch (error) {
+        setError('Failed to load Bitcoin price.');
+        setLoading(false);
+      }
+    };
 
-    return () => clearInterval(intervalId); // Clean up interval on component unmount
+    fetchBitcoinPrice();
+    const intervalId = setInterval(fetchBitcoinPrice, 60000); // Fetch price every minute
+
+    return () => clearInterval(intervalId); // Clean up the interval on component unmount
   }, []);
 
-  // Format the price as currency
-  const formattedPrice = bitcoinPrice ? bitcoinPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) : 'Loading...';
+  const formattedPrice = bitcoinData
+    ? bitcoinData.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+    : '';
 
   return (
-    <div className="bitcoin-price-content">
-      <p>{formattedPrice}</p>
+    <div className="bitcoin-price-card">
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
+      ) : (
+        <p className="bitcoin-price-value">{formattedPrice}</p>
+      )}
+      <p className="bitcoin-price-footer">Updated every minute</p>
     </div>
   );
 };
