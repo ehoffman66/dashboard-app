@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './BitcoinPriceContent.css'; // Ensure this is the correct path to your CSS file
+import './BitcoinPriceContent.css'; // Make sure the path to your CSS file is correct
 
 const BitcoinPriceContent = () => {
   const [bitcoinData, setBitcoinData] = useState(null);
@@ -36,7 +36,10 @@ const BitcoinPriceContent = () => {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <p className="bitcoin-price-value">{formattedPrice}</p>
+        <div className="bitcoin-price-content">
+          <img src="/images/bitcoin-logo.png" alt="Bitcoin" className="bitcoin-image" />
+          <p className="bitcoin-price-value">{formattedPrice}</p>
+        </div>
       )}
       <p className="bitcoin-price-footer">Updated every minute</p>
     </div>

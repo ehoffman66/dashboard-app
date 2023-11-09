@@ -1,13 +1,24 @@
+.bitcoin-price-value {
+  color: #27ae60; /* Vibrant green color for the Bitcoin price */
+  font-size: 35px; /* Larger font size for the price */
+  font-weight: bold; /* Bold font weight for the price */
+}
 
-  
-  .bitcoin-price-value {
-    color: #27ae60; /* Vibrant green color for the Bitcoin price */
-    font-size: 35px; /* Larger font size for the price */
-    font-weight: bold; /* Bold font weight for the price */
-    margin-bottom: 20px; /* Space below the price */
-  }
-  
-  .bitcoin-price-footer {
-    font-size: 14px; /* Smaller font size for any footer text */
-    color: #666; /* Lighter grey for less important information */
-  }
+.bitcoin-price-footer {
+  font-size: 14px; /* Smaller font size for any footer text */
+  color: #666; /* Lighter grey for less important information */
+}
+
+.bitcoin-price-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bitcoin-image {
+  width: 50px;  /* Set both width */
+  height: 50px; /* and height to the same value */
+  margin-right: 10px;
+  border-radius: 50%; /* This will make the image round */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
