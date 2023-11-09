@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './BookmarksContent.css'; // Make sure the path to your CSS file is correct
+import './BookmarksContent.css'; // Ensure this is the correct path to your CSS file
 
 const BookmarkComponent = () => {
   const [bookmarks, setBookmarks] = useState([]);
@@ -39,6 +39,24 @@ const BookmarkComponent = () => {
     setNewBookmark(event.target.value);
   };
 
+  // Utility function to capitalize the first letter of a string
+  const capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  // Extract the domain name for display and capitalize the first letter
+  const formatDisplayUrl = (url) => {
+    try {
+      let domain = new URL(url).hostname;
+      // Remove 'www.' if present, capitalize the first letter of the domain
+      domain = domain.replace(/^www\./i, '');
+      return capitalizeFirstLetter(domain);
+    } catch (error) {
+      console.error('Error formatting URL:', error);
+      return url; // Fallback to the full URL in case of an error
+    }
+  };
+
   return (
     <div className="bookmark-container">
       <form onSubmit={addBookmark} className="bookmark-form">
@@ -54,8 +72,12 @@ const BookmarkComponent = () => {
       <ul className="bookmark-list">
         {bookmarks.map((bookmark, index) => (
           <li key={index} className="bookmark-list-item">
-            <a href={bookmark} target="_blank" rel="noopener noreferrer">{bookmark}</a>
-            <button onClick={() => removeBookmark(index)} className="bookmark-remove-btn">Remove</button>
+            <a href={bookmark} target="_blank" rel="noopener noreferrer">
+              {formatDisplayUrl(bookmark)}
+            </a>
+            <button onClick={() => removeBookmark(index)} className="bookmark-remove-btn">
+              Remove
+            </button>
           </li>
         ))}
       </ul>
