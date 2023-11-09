@@ -1,0 +1,33 @@
+/* NHLScoresContent.css */
+
+.nba-scores-content {
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    text-align: center;
+  }
+  
+  .nba-scores-content h3 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+  }
+  
+  .nba-scores-content ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nba-scores-content li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .nba-scores-content div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+  }
+  
