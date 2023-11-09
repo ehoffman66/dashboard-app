@@ -2,6 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import NFLContent from './content/NFLContent';
 import NHLScoresContent from './content/NHLScoresContent';
+import NBAScoresContent from './content/NBAScoresContent';
 import ClockContent from './content/ClockContent';
 import BitcoinPriceContent from './content/BitcoinPriceContent';
 import BookmarkComponent from './content/BookmarkComponent';
@@ -28,6 +29,8 @@ const DraggableCard = ({ id, title, content, position, onControlledDrag }) => {
         return <NHLScoresContent />;
       case 'Bookmark':
         return <BookmarkComponent />;
+      case 'NBA':
+        return <NBAScoresContent />;
       default:
         return <div>No content available</div>;
     }
