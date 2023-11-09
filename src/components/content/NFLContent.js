@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './NFLScoresContent.css'; // Make sure to import the CSS file
+import './NFLScoresContent.css'; // Ensure this is the path to your CSS file
 
 const NFLScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [gamesPerPage] = useState(6); // Number of games you want per page
 
   useEffect(() => {
     const apiEndpoint = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';
@@ -15,8 +17,8 @@ const NFLScoresContent = () => {
         setScoreboard(response.data);
         setLoading(false);
       })
-      .catch(error => {
-        console.error('Error fetching NFL data:', error);
+      .catch(err => {
+        console.error('Error fetching NFL data:', err);
         setError('Failed to load NFL scores.');
         setLoading(false);
       });
@@ -25,15 +27,23 @@ const NFLScoresContent = () => {
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleString('en-US', {
-      weekday: 'short', // "Sat"
-      month: 'short', // "Jun"
-      day: '2-digit', // "01"
-      year: 'numeric', // "2019"
-      hour: '2-digit', // "12"
-      minute: '2-digit', // "00"
-      hour12: true // Use 12-hour format
+      weekday: 'short',
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true
     });
   };
+
+  const lastGameIndex = currentPage * gamesPerPage;
+  const firstGameIndex = lastGameIndex - gamesPerPage;
+  const currentGames = scoreboard?.events?.slice(firstGameIndex, lastGameIndex);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const totalPages = scoreboard?.events ? Math.ceil(scoreboard.events.length / gamesPerPage) : 0;
 
   if (loading) return <div>Loading NFL scores...</div>;
   if (error) return <div>{error}</div>;
@@ -41,14 +51,14 @@ const NFLScoresContent = () => {
   return (
     <div className="nfl-scores-content">
       <div className="games-grid">
-        {scoreboard?.events?.map((event, index) => {
+        {currentGames?.map((event, index) => {
           const isScheduled = event.status.type.description === "Scheduled";
           return (
             <div key={index} className="game">
               <div className="game-status">
-                {isScheduled ? formatDate(event.date) : event.status.type.description}
+                {isScheduled ? formatDate(event.competitions[0].date) : event.status.type.description}
               </div>
-              {!isScheduled && event.competitions[0]?.competitors?.map((team) => (
+              {event.competitions[0]?.competitors?.map((team) => (
                 <div key={team.id} className="team">
                   {team.team.logo && (
                     <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
@@ -60,6 +70,15 @@ const NFLScoresContent = () => {
           );
         })}
       </div>
+      {totalPages > 1 && (
+        <div className="pagination">
+          {[...Array(totalPages).keys()].map(number => (
+            <button key={number} onClick={() => paginate(number + 1)} className={currentPage === number + 1 ? 'active' : ''}>
+              {number + 1}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
