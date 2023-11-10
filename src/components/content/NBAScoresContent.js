@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './NBAScoresContent.css'; // Make sure to import the CSS file
 
-const NFLScoresContent = () => {
+const NBAScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -16,8 +16,8 @@ const NFLScoresContent = () => {
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching NFL data:', error);
-        setError('Failed to load NFL scores.');
+        console.error('Error fetching NBA data:', error);
+        setError('Failed to load NBA scores.');
         setLoading(false);
       });
   }, []);
@@ -35,11 +35,11 @@ const NFLScoresContent = () => {
     });
   };
 
-  if (loading) return <div>Loading NFL scores...</div>;
+  if (loading) return <div>Loading NBA scores...</div>;
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="nfl-scores-content">
+    <div className="nba-scores-content">
       <div className="games-grid">
         {scoreboard?.events?.map((event, index) => {
           const isScheduled = event.status.type.description === "Scheduled";
@@ -64,4 +64,4 @@ const NFLScoresContent = () => {
   );
 };
 
-export default NFLScoresContent;
+export default NBAScoresContent;
