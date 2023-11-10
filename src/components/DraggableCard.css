@@ -15,3 +15,13 @@
 .draggable-card:hover {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
+
+.card-title {
+  font-family: 'Roboto', sans-serif; /* Apply the Roboto font */
+  font-weight: 700; /* Make the title bold */
+  font-size: 20px; /* Keep the font size or adjust as needed */
+  color: #ff7f50; /* Add a pop of red color */
+  /* Adjust the color value above as per your design theme */
+  margin-bottom: 16px; /* Add some space below the title if needed */
+  /* Add any other styles for the title here */
+}
