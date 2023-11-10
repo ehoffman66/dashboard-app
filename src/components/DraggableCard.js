@@ -1,11 +1,11 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import NFLContent from './content/NFLContent';
-import NHLScoresContent from './content/NHLScoresContent';
-import NBAScoresContent from './content/NBAScoresContent';
-import ClockContent from './content/ClockContent';
-import BitcoinPriceContent from './content/BitcoinPriceContent';
-import BookmarkComponent from './content/BookmarkComponent';
+import NFLContent from './content/widgets/NFLScores/NFLContent';
+import NHLScoresContent from './content/widgets/NHLScores/NHLScoresContent';
+import NBAScoresContent from './content/widgets/NBAScores/NBAScoresContent';
+import ClockContent from './content/widgets/Clock/ClockContent';
+import BitcoinPriceContent from './content/widgets/BitcoinPrice/BitcoinPriceContent';
+import BookmarkComponent from './content/widgets/Bookmarks/BookmarkComponent';
 import './DraggableCard.css'; // Ensure this path is correct
 
 // ... other imports
