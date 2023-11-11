@@ -42,12 +42,15 @@ To install the dashboard widgets, clone the repository and run:
 
 ```bash
 npm install
+```
 
 This will install all the necessary dependencies for the project.
 
-##Usage
+## Usage
 To start the project, run:
+```bash
 npm start
+```
 
 This command will start the development server and open the dashboard in your default web browser.
 
