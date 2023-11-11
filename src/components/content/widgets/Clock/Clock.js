@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ClockContent.css'; // Ensure you have this CSS file
+import './Clock.css'; // Ensure you have this CSS file
 
 const ClockContent = () => {
   const [time, setTime] = useState(new Date());

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './NFLScoresContent.css'; // Ensure this is the path to your CSS file
+import './NFLScores.css'; // Ensure this is the path to your CSS file
 
 const NFLScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);

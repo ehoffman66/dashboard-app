@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './BookmarksContent.css'; // Ensure this is the correct path to your CSS file
+import './Bookmarks.css'; // Ensure this is the correct path to your CSS file
 
 const BookmarkComponent = () => {
   const [bookmarks, setBookmarks] = useState([]);

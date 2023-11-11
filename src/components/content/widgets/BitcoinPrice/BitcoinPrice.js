@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './BitcoinPriceContent.css'; // Make sure the path to your CSS file is correct
+import './BitcoinPrice.css'; // Make sure the path to your CSS file is correct
 
 const BitcoinPriceContent = () => {
   const [bitcoinData, setBitcoinData] = useState(null);
