@@ -42,3 +42,17 @@ To install the dashboard widgets, clone the repository and run:
 
 ```bash
 npm install
+
+This will install all the necessary dependencies for the project.
+
+##Usage
+To start the project, run:
+npm start
+
+This command will start the development server and open the dashboard in your default web browser.
+
+## Contributing
+Contributions to the dashboard widgets project are welcome. Please ensure to follow the existing project structure for any new widgets or updates.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
