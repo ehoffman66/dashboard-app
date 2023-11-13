@@ -1,0 +1,7 @@
+id: "nhl-scores"
+name: "NHL Scores"
+description: "Shows recent NHL scores, team logos, and real-time updates."
+thumbnail: "images/nhl-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Sports"
