@@ -1,0 +1,7 @@
+id: "bookmarks-widget"
+name: "Bookmarks"
+description: "Allows users to save and organize their favorite URLs."
+thumbnail: "images/bookmarks-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Productivity"
