@@ -1,0 +1,7 @@
+id: "nfl-scores"
+name: "NFL Scores"
+description: "Displays the latest NFL game scores."
+thumbnail: "images/nfl-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Sports"
