@@ -1,0 +1,7 @@
+id: "f1-standings-widget"
+name: "F1 Driver Standings"
+description: "Shows the current Formula 1 driver standings in order."
+thumbnail: "images/f1-standings-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Sports"

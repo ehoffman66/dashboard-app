@@ -1,0 +1,42 @@
+/* F1StandingsWidget.css */
+
+.f1-standings-widget {
+    padding: 2px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 600px; /* Adjust the width as necessary */
+  }
+  
+  .f1-standings-widget h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 16px; /* Space below the header */
+  }
+  
+  .f1-standings-widget ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .f1-standings-widget li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f7f7;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .driver-name {
+    /* Additional styling if needed */
+  }
+  
+  .driver-points {
+    font-weight: bold;
+    color: #2c3e50; /* A dark color for contrast */
+  }
+  
