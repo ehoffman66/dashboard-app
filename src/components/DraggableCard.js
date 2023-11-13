@@ -6,6 +6,7 @@ import NBAScoresContent from './content/widgets/NBAScores/NBAScores';
 import ClockContent from './content/widgets/Clock/Clock';
 import BitcoinPriceContent from './content/widgets/BitcoinPrice/BitcoinPrice';
 import BookmarkComponent from './content/widgets/Bookmarks/Bookmarks';
+import F1StandingsWidget from './content/widgets/F1Standings/F1Standings';
 import './DraggableCard.css'; // Ensure this path is correct
 
 // ... other imports
@@ -31,6 +32,8 @@ const DraggableCard = ({ id, title, content, position, onControlledDrag }) => {
         return <BookmarkComponent />;
       case 'NBA':
         return <NBAScoresContent />;
+      case 'F1':
+        return <F1StandingsWidget />;
       default:
         return <div>No content available</div>;
     }

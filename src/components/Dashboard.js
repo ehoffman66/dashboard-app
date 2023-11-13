@@ -19,6 +19,7 @@ const Dashboard = () => {
         { id: 4, title: 'NHL Scores', content: 'NHL', position: { x: 300, y: 0 }},
         { id: 5, title: 'Bookmarks', content: 'Bookmark', position: { x: 350, y: 0 }},
         { id: 6, title: 'NBA Scores', content: 'NBA', position: { x: 300, y: 0 }},
+        { id: 7, title: 'F1 Driver Standings', content: 'F1', position: { x: 325, y: 30 }},
       ];
       setCards(defaultCards);
       localStorage.setItem('dashboardCards', JSON.stringify(defaultCards));
