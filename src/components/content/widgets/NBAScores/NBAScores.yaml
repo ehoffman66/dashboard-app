@@ -1,0 +1,7 @@
+id: "nba-scores"
+name: "NBA Scores"
+description: "Presents live NBA scores, detailed game statuses, and team information."
+thumbnail: "images/nba-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Sports"
