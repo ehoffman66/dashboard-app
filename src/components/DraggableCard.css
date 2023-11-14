@@ -1,27 +1,22 @@
-/* DraggableCard.css */
-
 .draggable-card {
-  background-color: #fff;
-  border-radius: 8px;
+  position: relative;
   padding: 16px;
   margin: 8px;
-  transition: box-shadow 0.3s ease-in-out;
-  box-shadow: 0 10px 20px rgba(73, 73, 73, 0.35); /* Increase the y-offset and blur-radius */
-  position: relative; /* Keep it relative for positioning within the dashboard */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(73, 73, 73, 0.35);
   cursor: grab;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-/* Enhance the hover effect to lift the card with a bigger shadow */
 .draggable-card:hover {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .card-title {
-  font-family: 'Roboto', sans-serif; /* Apply the Roboto font */
-  font-weight: 700; /* Make the title bold */
-  font-size: 20px; /* Keep the font size or adjust as needed */
-  color: #ff7f50; /* Add a pop of red color */
-  /* Adjust the color value above as per your design theme */
-  margin-bottom: 16px; /* Add some space below the title if needed */
-  /* Add any other styles for the title here */
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #ff7f50;
+  margin-bottom: 16px;
 }
