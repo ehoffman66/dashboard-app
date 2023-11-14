@@ -5,3 +5,4 @@ thumbnail: "images/clock-thumbnail.png"
 author: "Dashboard Widgets Inc."
 version: "1.0.0"
 category: "Utility"
+tags: ["time", "clock", "timezone"]
