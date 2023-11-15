@@ -9,12 +9,6 @@
     max-width: 600px; /* Adjust the width as necessary */
   }
   
-  .f1-standings-widget h2 {
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 16px; /* Space below the header */
-  }
-  
   .f1-standings-widget ol {
     list-style: none;
     padding: 0;
