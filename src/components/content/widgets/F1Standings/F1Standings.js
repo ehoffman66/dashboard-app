@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './F1Standings.css'; // Make sure this is the correct path to your CSS file
+import './F1Standings.css';
 
 const F1StandingsWidget = () => {
   const [standings, setStandings] = useState([]);
@@ -17,11 +17,12 @@ const F1StandingsWidget = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching F1 Standings:', err);
-        setError('Failed to load F1 Standings.');
+        const errMsg = 'Failed to load F1 Standings.';
+        console.error(`${errMsg}`, err);
+        setError(errMsg);
         setLoading(false);
       });
-  }, []);
+  }, []); // No dependencies as we only want to run this once
 
   if (loading) return <div>Loading F1 Standings...</div>;
   if (error) return <div>Error: {error}</div>;
