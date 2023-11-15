@@ -32,7 +32,8 @@
   }
   
   .driver-name {
-    /* Additional styling if needed */
+    font-weight: bold;
+    padding-right: 5px;
   }
   
   .driver-points {
