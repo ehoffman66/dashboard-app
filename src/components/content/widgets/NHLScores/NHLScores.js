@@ -43,12 +43,13 @@ const NFLScoresContent = () => {
       <div className="games-grid">
         {scoreboard?.events?.map((event, index) => {
           const isScheduled = event.status.type.description === "Scheduled";
+          const sortedCompetitors = event.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1);
           return (
             <div key={index} className="game">
               <div className="game-status">
                 {isScheduled ? formatDate(event.date) : event.status.type.description}
               </div>
-              {event.competitions[0]?.competitors?.map((team) => (
+              {sortedCompetitors?.map((team) => (
                 <div key={team.id} className="team">
                   {team.team.logo && (
                     <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />

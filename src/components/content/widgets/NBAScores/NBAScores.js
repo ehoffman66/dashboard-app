@@ -1,54 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './NBAScores.css'; // Make sure to import the CSS file
+import './NBAScores.css';
 
 const NBAScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
 
   useEffect(() => {
-    const apiEndpoint = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard';
+    const fetchScoreboard = async () => {
+      const response = await axios.get('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard');
+      setScoreboard(response.data);
+    };
 
-    axios.get(apiEndpoint)
-      .then(response => {
-        setScoreboard(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching NBA data:', error);
-        setError('Failed to load NBA scores.');
-        setLoading(false);
-      });
+    fetchScoreboard();
   }, []);
 
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleString('en-US', {
-      weekday: 'short', // "Sat"
-      month: 'short', // "Jun"
-      day: '2-digit', // "01"
-      year: 'numeric', // "2019"
-      hour: '2-digit', // "12"
-      minute: '2-digit', // "00"
-      hour12: true // Use 12-hour format
-    });
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
   };
-
-  if (loading) return <div>Loading NBA scores...</div>;
-  if (error) return <div>{error}</div>;
 
   return (
     <div className="nba-scores-content">
       <div className="games-grid">
         {scoreboard?.events?.map((event, index) => {
           const isScheduled = event.status.type.description === "Scheduled";
+          const sortedCompetitors = event.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1);
           return (
             <div key={index} className="game">
               <div className="game-status">
                 {isScheduled ? formatDate(event.date) : event.status.type.description}
               </div>
-              {event.competitions[0]?.competitors?.map((team) => (
+              {sortedCompetitors?.map((team) => (
                 <div key={team.id} className="team">
                   {team.team.logo && (
                     <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
