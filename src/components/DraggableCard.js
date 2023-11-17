@@ -1,12 +1,7 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import NFLContent from './content/widgets/NFLScores/NFLScores';
-import NHLScoresContent from './content/widgets/NHLScores/NHLScores';
-import NBAScoresContent from './content/widgets/NBAScores/NBAScores';
-import ClockContent from './content/widgets/Clock/Clock';
-import BitcoinPriceContent from './content/widgets/BitcoinPrice/BitcoinPrice';
-import BookmarkComponent from './content/widgets/Bookmarks/Bookmarks';
-import F1StandingsWidget from './content/widgets/F1Standings/F1Standings';
+import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent, 
+BitcoinPriceContent, BookmarkComponent, F1StandingsWidget } from './content/widgets';
 import './DraggableCard.css';
 
 const contentComponents = {
