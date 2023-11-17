@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import DraggableCard from './DraggableCard';
+import Navbar from './Navbar';
 import './Dashboard.css';
 
 const DEFAULT_CARDS = [
@@ -37,18 +38,21 @@ const Dashboard = () => {
   }, [cards]);
 
   return (
-    <div className="dashboard">
-      {cards.map((card, index) => (
-        <DraggableCard
-          key={card.id}
-          id={card.id}
-          index={index}
-          title={card.title}
-          content={card.content}
-          position={card.position}
-          onControlledDrag={onControlledDrag}
-        />
-      ))}
+    <div>
+      <Navbar widgets={DEFAULT_CARDS} /> {/* Pass DEFAULT_CARDS as widgets prop */}
+      <div className="dashboard">
+        {cards.map((card, index) => (
+          <DraggableCard
+            key={card.id}
+            id={card.id}
+            index={index}
+            title={card.title}
+            content={card.content}
+            position={card.position}
+            onControlledDrag={onControlledDrag}
+          />
+        ))}
+      </div>
     </div>
   );
 };
