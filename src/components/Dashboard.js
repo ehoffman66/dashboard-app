@@ -1,32 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DraggableCard from './DraggableCard';
 import './Dashboard.css';
+
+const DEFAULT_CARDS = [
+  { id: 1, title: 'NFL Scores', content: 'NFL', position: { x: -171, y: 0 }},
+  { id: 2, title: 'Current Time', content: 'Clock', position: { x: -167, y: 0 }},
+  { id: 3, title: 'Bitcoin Price', content: 'Bitcoin', position: { x: -128, y: 0 }},
+  { id: 4, title: 'NHL Scores', content: 'NHL', position: { x: -35, y: -4 }},
+  { id: 5, title: 'Bookmarks', content: 'Bookmark', position: { x: 24, y: -483 }},
+  { id: 6, title: 'NBA Scores', content: 'NBA', position: { x: -307, y: -266 }},
+  { id: 7, title: 'F1 Driver Standings', content: 'F1', position: { x: 641, y: -1461 }},
+];
 
 const Dashboard = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    // Load the card positions from localStorage on initial render
     const savedCards = JSON.parse(localStorage.getItem('dashboardCards'));
     if (savedCards) {
       setCards(savedCards);
     } else {
-      // Initialize with default positions if not present in localStorage
-      const defaultCards = [
-        { id: 1, title: 'NFL Scores', content: 'NFL', position: { x: 0, y: 0 }},
-        { id: 2, title: 'Current Time', content: 'Clock', position: { x: 100, y: 0 }},
-        { id: 3, title: 'Bitcoin Price', content: 'Bitcoin', position: { x: 200, y: 0 }},
-        { id: 4, title: 'NHL Scores', content: 'NHL', position: { x: 300, y: 0 }},
-        { id: 5, title: 'Bookmarks', content: 'Bookmark', position: { x: 350, y: 0 }},
-        { id: 6, title: 'NBA Scores', content: 'NBA', position: { x: 300, y: 0 }},
-        { id: 7, title: 'F1 Driver Standings', content: 'F1', position: { x: 325, y: 30 }},
-      ];
-      setCards(defaultCards);
-      localStorage.setItem('dashboardCards', JSON.stringify(defaultCards));
+      setCards(DEFAULT_CARDS);
+      localStorage.setItem('dashboardCards', JSON.stringify(DEFAULT_CARDS));
     }
   }, []);
 
-  const onControlledDrag = (id, x, y) => {
+  const onControlledDrag = useCallback((id, x, y) => {
     const newCards = cards.map((card) => {
       if (card.id === id) {
         return { ...card, position: { x, y }};
@@ -34,9 +33,8 @@ const Dashboard = () => {
       return card;
     });
     setCards(newCards);
-    // Save the new card positions to localStorage
     localStorage.setItem('dashboardCards', JSON.stringify(newCards));
-  };
+  }, [cards]);
 
   return (
     <div className="dashboard">
