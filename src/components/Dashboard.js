@@ -29,7 +29,15 @@ const Dashboard = () => {
   const onControlledDrag = useCallback((id, x, y) => {
     const newCards = cards.map((card) => {
       if (card.id === id) {
-        return { ...card, position: { x, y }};
+        const dashboardWidth = document.querySelector('.dashboard').offsetWidth;
+        const dashboardHeight = document.querySelector('.dashboard').offsetHeight;
+        const cardWidth = document.querySelector('.draggable-card').offsetWidth;
+        const cardHeight = document.querySelector('.draggable-card').offsetHeight;
+  
+        const maxX = dashboardWidth - cardWidth;
+        const maxY = dashboardHeight - cardHeight;
+  
+        return { ...card, position: { x: Math.max(0, Math.min(maxX, x)), y: Math.max(0, Math.min(maxY, y)) }};
       }
       return card;
     });

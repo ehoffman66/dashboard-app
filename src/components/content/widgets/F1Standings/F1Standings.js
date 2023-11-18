@@ -22,7 +22,7 @@ const F1StandingsWidget = () => {
         setError(errMsg);
         setLoading(false);
       });
-  }, []); // No dependencies as we only want to run this once
+  }, []);
 
   if (loading) return <div>Loading F1 Standings...</div>;
   if (error) return <div>Error: {error}</div>;
