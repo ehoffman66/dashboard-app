@@ -37,6 +37,12 @@ const Dashboard = () => {
     localStorage.setItem('dashboardCards', JSON.stringify(newCards));
   }, [cards]);
 
+  const onClose = (id) => {
+    const newCards = cards.filter((card) => card.id !== id);
+    setCards(newCards);
+    localStorage.setItem('dashboardCards', JSON.stringify(newCards));
+  };
+
   return (
     <div>
       <Navbar widgets={DEFAULT_CARDS} /> {/* Pass DEFAULT_CARDS as widgets prop */}
@@ -50,6 +56,7 @@ const Dashboard = () => {
             content={card.content}
             position={card.position}
             onControlledDrag={onControlledDrag}
+            onClose={onClose}
           />
         ))}
       </div>
