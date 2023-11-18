@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './F1Standings.css';
 
+const ITEMS_PER_PAGE = 10;
+
 const F1StandingsWidget = () => {
   const [standings, setStandings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const endpoint = 'https://ergast.com/api/f1/current/driverStandings.json';
@@ -24,13 +27,21 @@ const F1StandingsWidget = () => {
       });
   }, []);
 
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
+
   if (loading) return <div>Loading F1 Standings...</div>;
   if (error) return <div>Error: {error}</div>;
+
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentPageStandings = standings.slice(startIndex, endIndex);
 
   return (
     <div className="f1-standings-widget">
       <ol>
-        {standings.map((standing, index) => (
+        {currentPageStandings.map((standing, index) => (
           <li key={index}>
             <span className="driver-name">
               {standing.Driver.givenName} {standing.Driver.familyName}
@@ -41,6 +52,13 @@ const F1StandingsWidget = () => {
           </li>
         ))}
       </ol>
+      <div className="pagination">
+        {Array(Math.ceil(standings.length / ITEMS_PER_PAGE)).fill().map((_, index) => (
+          <button key={index} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

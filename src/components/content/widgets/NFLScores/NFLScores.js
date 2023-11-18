@@ -58,7 +58,7 @@ const NFLScoresContent = () => {
               <div className="game-status">
                 {isScheduled ? formatDate(event.competitions[0].date) : event.status.type.description}
               </div>
-              {event.competitions[0]?.competitors?.map((team) => (
+              {event.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1).map((team) => (
                 <div key={team.id} className="team">
                   {team.team.logo && (
                     <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
