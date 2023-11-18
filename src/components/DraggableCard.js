@@ -14,9 +14,13 @@ const contentComponents = {
   F1: F1StandingsWidget,
 };
 
-const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDrag }) => {
+const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDrag, onClose }) => {
   const handleStop = (e, data) => {
     onControlledDrag(id, data.x, data.y);
+  };
+
+  const handleClose = () => {
+    onClose(id);
   };
 
   const ContentComponent = contentComponents[content] || (() => <div>No content available</div>);
@@ -29,7 +33,10 @@ const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDra
       bounds="parent"
     >
       <div className="draggable-card">
-        <div className="card-title">{title}</div>
+        <div className="card-title">
+          {title}
+          <span className="close-button" onClick={handleClose}>x</span>
+        </div>
         <ContentComponent />
       </div>
     </Draggable>
