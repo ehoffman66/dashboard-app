@@ -20,3 +20,8 @@
   color: #ff7f50;
   margin-bottom: 16px;
 }
+
+.close-button {
+  float: right;
+  cursor: pointer;
+}
