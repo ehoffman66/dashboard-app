@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './NBAScores.css';
 
+const ITEMS_PER_PAGE = 6;
+
 const NBAScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchScoreboard = async () => {
@@ -19,10 +22,16 @@ const NBAScoresContent = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const currentPageEvents = scoreboard?.events?.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
   return (
     <div className="nba-scores-content">
       <div className="games-grid">
-        {scoreboard?.events?.map((event, index) => {
+        {currentPageEvents?.map((event, index) => {
           const isScheduled = event.status.type.description === "Scheduled";
           const sortedCompetitors = event.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1);
           return (
@@ -41,6 +50,13 @@ const NBAScoresContent = () => {
             </div>
           );
         })}
+      </div>
+      <div className="pagination">
+        {Array(Math.ceil((scoreboard?.events?.length || 0) / ITEMS_PER_PAGE)).fill().map((_, index) => (
+          <button key={index} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
       </div>
     </div>
   );
