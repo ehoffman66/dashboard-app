@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const ITEMS_PER_PAGE = 6;
 
-const NFLScoresContent = () => {
+const NHLScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -58,7 +58,7 @@ const NFLScoresContent = () => {
   const currentPageEvents = scoreboard?.events?.slice(startIndex, endIndex);
 
   return (
-    <div className="nfl-scores-content">
+    <div className="nhl-scores-content">
       <div className="games-grid">
         {currentPageEvents?.map((event, index) => {
           const isScheduled = event.status.type.description === "Scheduled";
