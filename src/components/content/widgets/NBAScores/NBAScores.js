@@ -8,6 +8,16 @@ const NBAScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const getQuarterString = (quarter) => {
+    switch (quarter) {
+      case 1: return '1st';
+      case 2: return '2nd';
+      case 3: return '3rd';
+      case 4: return '4th';
+      default: return `${quarter}th Quarter`;
+    }
+  };
+  
   useEffect(() => {
     const fetchScoreboard = async () => {
       const response = await axios.get('https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard');
@@ -36,9 +46,9 @@ const NBAScoresContent = () => {
           const sortedCompetitors = event.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1);
           return (
             <div key={index} className="game">
-              <div className="game-status">
-                {isScheduled ? formatDate(event.date) : event.status.type.description}
-              </div>
+            <div className="game-status">
+              {isScheduled ? formatDate(event.date) : event.status.type.description === "In Progress" ? `In Progress - ${getQuarterString(event.status.period)} (${event.status.displayClock})` : event.status.type.description}
+            </div>
               {sortedCompetitors?.map((team) => (
                 <div key={team.id} className="team">
                   {team.team.logo && (
