@@ -1,0 +1,25 @@
+/* CollegeFootballScoresWidget.css */
+
+.college-football-scores-widget {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .college-football-scores-widget h2 {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .college-football-scores-widget ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .college-football-scores-widget li {
+    background-color: #f7f7f7;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+  }  
