@@ -1,0 +1,8 @@
+id: "college-football-scores-widget"
+name: "College Football Scores"
+description: "Shows the current College Football scores in real-time."
+thumbnail: "images/college-football-scores-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Sports"
+tags: ["college football", "scores", "sports", "real-time"]
