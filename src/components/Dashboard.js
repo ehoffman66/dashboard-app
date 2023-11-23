@@ -10,8 +10,8 @@ const DEFAULT_CARDS = [
   { id: 4, title: 'NHL Scores', content: 'NHL', position: { x: -35, y: -4 }},
   { id: 5, title: 'Bookmarks', content: 'Bookmark', position: { x: 24, y: -483 }},
   { id: 6, title: 'NBA Scores', content: 'NBA', position: { x: -307, y: -266 }},
-  { id: 7, title: 'F1 Driver Standings', content: 'F1', position: { x: 641, y: -1461 }},
-  { id: 8, title: 'College Football Scores', content: 'College', position: { x: 641, y: -1461 }},
+  { id: 7, title: 'F1 Driver Standings', content: 'F1', position: { x: 641, y: 300 }},
+  { id: 8, title: 'College Football Scores', content: 'College', position: { x: 641, y: 200 }},
 ];
 
 const Dashboard = () => {
