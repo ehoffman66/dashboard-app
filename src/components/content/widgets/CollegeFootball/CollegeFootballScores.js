@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const ITEMS_PER_PAGE = 6;
+
 const CollegeFootballScores = () => {
   const [scores, setScores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchScores = async () => {
@@ -21,21 +24,45 @@ const CollegeFootballScores = () => {
     fetchScores();
   }, []);
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const currentPageScores = scores.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
-      <h2>College Football Scores</h2>
-      <ul>
-        {scores.map((game) => (
-          <li key={game.id}>
-            {game.competitions[0].competitors[0].team.name} vs. {game.competitions[0].competitors[1].team.name}
-            {' - '}
-            {game.status.type.completed ? 'Final' : game.status.type.detail}
-          </li>
+    <div className="college-football-scores-content">
+      <div className="games-grid">
+        {currentPageScores.map((game, index) => {
+          const isCompleted = game.status.type.completed;
+          const sortedCompetitors = game.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1);
+          return (
+            <div key={index} className="game">
+              <div className="game-status">
+                {isCompleted ? 'Final' : game.status.type.detail}
+              </div>
+              {sortedCompetitors?.map((team) => (
+                <div key={team.id} className="team">
+                  {team.team.logo && (
+                    <img src={team.team.logo} alt={`${team.team.name} Logo`} className="team-logo" />
+                  )}
+                  <span>{team.team.name} - {team.score || 'TBD'}</span>
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </div>
+      <div className="pagination">
+        {Array(Math.ceil(scores.length / ITEMS_PER_PAGE)).fill().map((_, index) => (
+          <button key={index} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
