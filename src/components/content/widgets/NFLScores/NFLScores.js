@@ -63,7 +63,7 @@ const NFLScoresContent = () => {
                   {team.team.logo && (
                     <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
                   )}
-                  <span>{team.team.displayName} - {isScheduled ? '' : team.score}</span>
+                  <span>{team.team.displayName} {isScheduled ? '' : `- ${team.score}`}</span>
                 </div>
               ))}
             </div>
