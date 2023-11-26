@@ -13,6 +13,7 @@
     transform: translateX(-50%);
     font-size: 30px;
     font-weight: bold;
+    color: #473E66;
   }
   
   .navbar-marketplace {
@@ -24,7 +25,7 @@
   }
   
   .navbar-marketplace:hover {
-    color: #ff7f50;
+    color: #F1916D;
   }
   
   .side-panel {
@@ -50,7 +51,7 @@
   .side-panel-title {
     font-size: 32px;
     font-weight: bold;
-    color: #007bff;
+    color: #473E66;
     margin-top: 0px;
   }
   
