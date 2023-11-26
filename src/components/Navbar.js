@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 
 const Navbar = ({ widgets }) => {
@@ -44,13 +44,16 @@ const Navbar = ({ widgets }) => {
             onClick={handleCloseClick} 
           />
           <h2 className="side-panel-title">Marketplace</h2>
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
+          <div className="search-container">
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+          </div>
           <ul className="widget-list">
             {filteredWidgets.map((widget, index) => (
               <li key={index} onClick={() => handleWidgetClick(widget)}>
@@ -64,4 +67,4 @@ const Navbar = ({ widgets }) => {
   );
 };
 
-export default Navbar;
+export default Navbar;  
