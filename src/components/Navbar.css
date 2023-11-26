@@ -3,17 +3,18 @@
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    background-color: #f8f9fa;
+    color: #0b4392;
     position: relative;
+    background-color: #e2e9f3;
   }
   
   .navbar-title {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
-    color: #473E66;
+    color: #34B1AA;
     font-family: 'Roboto', sans-serif;
   }
   
@@ -23,6 +24,7 @@
     font-size: 30px;
     transition: color 0.3s ease;
     cursor: pointer;
+    color: #1E1E2C;
   }
   
   .navbar-marketplace:hover {
