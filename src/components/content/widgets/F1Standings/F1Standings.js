@@ -44,18 +44,18 @@ const F1StandingsWidget = () => {
   return (
     <div className="f1-standings-widget">
       <div style={{ display: 'flex', marginBottom: '10px' }}>
-        <div style={{ cursor: 'pointer', marginRight: '10px' }} onClick={() => setStandingsType('driver')}>Driver</div>
-        <div style={{ cursor: 'pointer' }} onClick={() => setStandingsType('constructor')}>Constructor</div>
+        <div className="standings-type" onClick={() => setStandingsType('driver')}>Driver</div>
+        <div className="standings-type" onClick={() => setStandingsType('constructor')}>Constructor</div>
       </div>
       <ol>
         {currentPageStandings.map((standing, index) => (
           <li key={index}>
-            <span className="name">
+            <span className="driver-name">
               {standingsType === 'driver'
                 ? standing.Driver ? `${standing.Driver.givenName} ${standing.Driver.familyName}` : ''
                 : standing.Constructor ? standing.Constructor.name : ''}
             </span>
-            <span className="points">
+            <span className="driver-points">
               {standing.points} pts
             </span>
           </li>
@@ -63,7 +63,7 @@ const F1StandingsWidget = () => {
       </ol>
       <div className="pagination">
         {Array(Math.ceil(standings.length / ITEMS_PER_PAGE)).fill().map((_, index) => (
-          <button key={index} onClick={() => handlePageChange(index + 1)}>
+          <button className="pagination-button" key={index} onClick={() => handlePageChange(index + 1)}>
             {index + 1}
           </button>
         ))}
