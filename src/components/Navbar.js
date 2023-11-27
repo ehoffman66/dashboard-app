@@ -20,7 +20,6 @@ const Navbar = ({ widgets }) => {
   };
 
   const handleWidgetClick = (widget) => {
-    // Perform some action with widget
     console.log(`Widget clicked: ${widget.title}`);
   };
 
@@ -37,7 +36,7 @@ const Navbar = ({ widgets }) => {
         onClick={handleMarketplaceClick} 
       />
       {isSidePanelOpen && (
-        <div className="side-panel">
+        <div className={`side-panel ${isSidePanelOpen ? 'side-panel-open' : ''}`}>
           <FontAwesomeIcon 
             icon={faTimes} 
             className="side-panel-close" 
@@ -45,18 +44,18 @@ const Navbar = ({ widgets }) => {
           />
           <h2 className="side-panel-title">Marketplace</h2>
           <div className="search-container">
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
             <input
               type="text"
               className="search-input"
-              placeholder="Search..."
+              placeholder="Search widgets"
               value={searchTerm}
               onChange={handleSearchChange}
             />
-            <FontAwesomeIcon icon={faSearch} className="search-icon" />
           </div>
           <ul className="widget-list">
             {filteredWidgets.map((widget, index) => (
-              <li key={index} onClick={() => handleWidgetClick(widget)}>
+              <li key={index} className="widget-list-item" onClick={() => handleWidgetClick(widget)}>
                 {widget.title}
               </li>
             ))}
@@ -67,4 +66,4 @@ const Navbar = ({ widgets }) => {
   );
 };
 
-export default Navbar;  
+export default Navbar;
