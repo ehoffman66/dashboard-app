@@ -9,23 +9,26 @@ const F1StandingsWidget = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [standingsType, setStandingsType] = useState('driver'); // 'driver' or 'constructor'
 
   useEffect(() => {
-    const endpoint = 'https://ergast.com/api/f1/current/driverStandings.json';
+    const endpoint = `https://ergast.com/api/f1/current/${standingsType}Standings.json`;
     
     axios.get(endpoint)
       .then(response => {
-        const driverStandings = response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-        setStandings(driverStandings);
+        const standingsList = standingsType === 'driver'
+          ? response.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
+          : response.data.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+        setStandings(standingsList);
         setLoading(false);
       })
       .catch(err => {
-        const errMsg = 'Failed to load F1 Standings.';
+        const errMsg = `Failed to load F1 ${standingsType.charAt(0).toUpperCase() + standingsType.slice(1)} Standings.`;
         console.error(`${errMsg}`, err);
         setError(errMsg);
         setLoading(false);
       });
-  }, []);
+  }, [standingsType]);
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
@@ -40,13 +43,19 @@ const F1StandingsWidget = () => {
 
   return (
     <div className="f1-standings-widget">
+      <div style={{ display: 'flex', marginBottom: '10px' }}>
+        <div style={{ cursor: 'pointer', marginRight: '10px' }} onClick={() => setStandingsType('driver')}>Driver</div>
+        <div style={{ cursor: 'pointer' }} onClick={() => setStandingsType('constructor')}>Constructor</div>
+      </div>
       <ol>
         {currentPageStandings.map((standing, index) => (
           <li key={index}>
-            <span className="driver-name">
-              {standing.Driver.givenName} {standing.Driver.familyName}
+            <span className="name">
+              {standingsType === 'driver'
+                ? standing.Driver ? `${standing.Driver.givenName} ${standing.Driver.familyName}` : ''
+                : standing.Constructor ? standing.Constructor.name : ''}
             </span>
-            <span className="driver-points">
+            <span className="points">
               {standing.points} pts
             </span>
           </li>
