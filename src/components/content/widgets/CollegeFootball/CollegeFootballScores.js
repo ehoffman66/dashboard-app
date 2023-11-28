@@ -46,12 +46,11 @@ const CollegeFootballScores = () => {
               </div>
               {sortedCompetitors?.map((team) => (
                 <div key={team.id} className="team">
-                  {team.team.logo && (
+                    {team.team.logo && (
                     <img src={team.team.logo} alt={`${team.team.name} Logo`} className="team-logo" />
-                  )}
-                  <span>{team.team.name} - {team.score || 'TBD'}</span>
-                </div>
-              ))}
+                    )}
+                    <span>{team.team.name} {isCompleted ? `- ${team.score}` : ''}</span>                </div>
+                ))}
             </div>
           );
         })}
