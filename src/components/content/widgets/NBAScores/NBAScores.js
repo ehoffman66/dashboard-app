@@ -46,15 +46,15 @@ const NBAScoresContent = () => {
           const sortedCompetitors = event.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1);
           return (
             <div key={index} className="game">
-            <div className="game-status">
-              {isScheduled ? formatDate(event.date) : event.status.type.description === "In Progress" ? `In Progress - ${getQuarterString(event.status.period)} (${event.status.displayClock})` : event.status.type.description}
-            </div>
+              <div className="game-status">
+                {isScheduled ? formatDate(event.date) : event.status.type.description === "In Progress" ? `In Progress - ${getQuarterString(event.status.period)} (${event.status.displayClock})` : event.status.type.description}
+              </div>
               {sortedCompetitors?.map((team) => (
                 <div key={team.id} className="team">
                   {team.team.logo && (
                     <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
                   )}
-                  <span>{team.team.displayName} - {team.score || 'TBD'}</span>
+                  <span>{team.team.displayName} {isScheduled ? '' : `- ${team.score}`}</span>
                 </div>
               ))}
             </div>
