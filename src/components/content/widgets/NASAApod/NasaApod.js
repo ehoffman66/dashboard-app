@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './NasaApod.css'; 
+import './NASAApod.css'; 
 
 const NasaApodWidget = () => {
   const [apod, setApod] = useState(null);
@@ -8,7 +8,7 @@ const NasaApodWidget = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiKey = process.env.NASA_API_KEY;
+    const apiKey = process.env.REACT_APP_NASA_API_KEY;
     const apiUrl = `https://api.nasa.gov/planetary/apod?api_key=${apiKey}`;
 
     axios.get(apiUrl)
@@ -29,9 +29,8 @@ const NasaApodWidget = () => {
 
   return (
     <div className="nasa-apod-widget">
-      <h2>NASA Astronomy Picture of the Day</h2>
       <img src={apod.url} alt={apod.title} className="apod-image" />
-      <p>{apod.explanation}</p>
+      <div className="apod-title">{apod.title}</div>
     </div>
   );
 };

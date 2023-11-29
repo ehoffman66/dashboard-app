@@ -1,14 +1,33 @@
 .nasa-apod-widget {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .nasa-apod-widget .apod-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-  
+  width: 400px; /* adjust this to your liking */
+  height: 400px; /* adjust this to your liking */
+  text-align: center;
+  margin: 0 auto; /* centers the widget if its width is less than its container's width */
+  position: relative;
+}
+
+.nasa-apod-widget .apod-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nasa-apod-widget:hover .apod-title {
+  opacity: 1;
+}
+
+.apod-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}

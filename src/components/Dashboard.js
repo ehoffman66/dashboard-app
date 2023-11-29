@@ -12,6 +12,7 @@ const DEFAULT_CARDS = [
   { id: 6, title: 'NBA Scores', content: 'NBA', position: { x: -307, y: -266 }},
   { id: 7, title: 'F1 Driver Standings', content: 'F1', position: { x: 641, y: 300 }},
   { id: 8, title: 'College Football Scores', content: 'College', position: { x: 641, y: 200 }},
+  { id: 9, title: 'NASA Daily Photo', content: 'NASA', position: { x: 741, y: 200 }},
 ];
 
 const Dashboard = () => {
