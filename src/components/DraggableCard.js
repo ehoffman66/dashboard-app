@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent, 
 BitcoinPriceContent, BookmarkComponent, F1StandingsWidget, 
-CollegeFootballScores, NASAApod } from './content/widgets';
+CollegeFootballScores, NASAApod, BirthdayReminder } from './content/widgets';
 import './DraggableCard.css';
 
 const contentComponents = {
@@ -15,6 +15,7 @@ const contentComponents = {
   F1: F1StandingsWidget,
   College: CollegeFootballScores,
   NASA: NASAApod,
+  Birthday: BirthdayReminder,
 };
 
 const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDrag, onClose }) => {
