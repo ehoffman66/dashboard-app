@@ -7,4 +7,4 @@ export { default as BookmarkComponent } from './Bookmarks/Bookmarks';
 export { default as F1StandingsWidget } from './F1Standings/F1Standings';
 export { default as CollegeFootballScores } from './CollegeFootball/CollegeFootballScores';
 export { default as NASAApod } from './NASAApod/NASAApod';
-export { default as BirthdayReminder } from './BirthdayReminder/BirthdayReminder';
+export { default as BirthdayReminder } from './BirthdayReminders/BirthdayReminders';
