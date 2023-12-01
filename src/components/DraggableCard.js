@@ -2,7 +2,7 @@ import React from 'react';
 import Draggable from 'react-draggable';
 import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent, 
 BitcoinPriceContent, BookmarkComponent, F1StandingsWidget, 
-CollegeFootballScores, NASAApod, BirthdayReminder } from './content/widgets';
+CollegeFootballScores, NASAApod, BirthdayReminder, OfficeQuotes } from './content/widgets';
 import './DraggableCard.css';
 
 const contentComponents = {
@@ -16,6 +16,7 @@ const contentComponents = {
   College: CollegeFootballScores,
   NASA: NASAApod,
   Birthday: BirthdayReminder,
+  Office: OfficeQuotes,
 };
 
 const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDrag, onClose }) => {
@@ -26,7 +27,9 @@ const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDra
   const handleClose = () => {
     onClose(id);
   };
-
+  console.log(content);
+  console.log(contentComponents);
+  console.log(contentComponents[content]);
   const ContentComponent = contentComponents[content] || (() => <div>No content available</div>);
 
   return (

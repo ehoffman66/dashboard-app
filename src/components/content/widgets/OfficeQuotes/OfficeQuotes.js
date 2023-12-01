@@ -1,39 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './OfficeQuotesWidget.css'; // Make sure to include your stylesheet
 
-const OfficeQuotesWidget = () => {
-  const [quoteData, setQuoteData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const OfficeQuotes = () => {
+  const [quote, setQuote] = useState(null);
 
   useEffect(() => {
-    const fetchQuote = async () => {
-      try {
-        const response = await axios.get('https://officeapi.akashrajpurohit.com/quote/random');
-        setQuoteData(response.data);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error fetching The Office quote:', err);
-        setError('Failed to load quote.');
-        setLoading(false);
-      }
-    };
-
-    fetchQuote();
+    console.log('Fetching data...');
+  
+    fetch('https://officeapi.akashrajpurohit.com/quote/random')
+      .then(response => {
+        console.log('Received response:', response);
+        return response.json();
+      })
+      .then(data => {
+        console.log('Received data:', data);
+        setQuote(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!quoteData) return null;
-
   return (
-    <div className="office-quotes-widget">
-      <img src={quoteData.character_avatar_url} alt={quoteData.character} className="character-avatar" />
-      <p className="quote">{quoteData.quote}</p>
-      <p className="character">- {quoteData.character}</p>
+    <div>
+      {quote ? (
+        <>
+          <h2>{quote.character}</h2>
+          <p>{quote.quote}</p>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };
 
-export default OfficeQuotesWidget;
+export default OfficeQuotes;

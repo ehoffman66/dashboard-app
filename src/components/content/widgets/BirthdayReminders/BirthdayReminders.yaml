@@ -1,0 +1,9 @@
+id: "birthday-reminders-widget"
+name: "Birthday Reminders"
+description: "Shows a list of upcoming birthdays."
+thumbnail: "images/birthday-reminders-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Productivity"
+tags: ["birthday", "reminders", "calendar", "productivity"]
+```
