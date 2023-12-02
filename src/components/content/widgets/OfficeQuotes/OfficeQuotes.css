@@ -2,23 +2,30 @@
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
-    text-align: center;
+    display: flex;
+    align-items: flex-start;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 500px;
   }
   
   .office-quotes-widget .character-avatar {
-    max-width: 100px;
-    height: auto;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex-shrink: 0; /* Prevent the image from shrinking */
   }
   
   .office-quotes-widget .quote {
     font-style: italic;
     margin-bottom: 10px;
+    word-wrap: break-word;
   }
   
   .office-quotes-widget .character {
     font-weight: bold;
   }
-  

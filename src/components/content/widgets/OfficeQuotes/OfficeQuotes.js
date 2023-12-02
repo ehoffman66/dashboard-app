@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import './OfficeQuotes.css'; // Import the CSS file
 
 const OfficeQuotes = () => {
   const [quote, setQuote] = useState(null);
 
   useEffect(() => {
-    console.log('Fetching data...');
-  
     fetch('https://officeapi.akashrajpurohit.com/quote/random')
-      .then(response => {
-        console.log('Received response:', response);
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
-        console.log('Received data:', data);
         setQuote(data);
       })
       .catch(error => {
@@ -21,15 +16,21 @@ const OfficeQuotes = () => {
   }, []);
 
   return (
-    <div>
-      {quote ? (
+    <div className="office-quotes-widget">
+    {quote ? (
         <>
-          <h2>{quote.character}</h2>
-          <p>{quote.quote}</p>
+        <div
+            className="character-avatar"
+            style={{ backgroundImage: `url(${quote.character_avatar_url})` }}
+        />
+        <div>
+            <h2 className="character">{quote.character}</h2>
+            <p className="quote">{quote.quote}</p>
+        </div>
         </>
-      ) : (
+    ) : (
         <p>Loading...</p>
-      )}
+    )}
     </div>
   );
 };
