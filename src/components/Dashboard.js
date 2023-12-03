@@ -15,6 +15,7 @@ const DEFAULT_CARDS = [
   { id: 9, title: 'NASA Daily Photo', content: 'NASA', position: { x: -624, y: -477 }},
   { id: 10, title: 'Birthday Reminders', content: 'Birthday', position: { x: -117, y: -1409 }},
   { id: 11, title: 'Office Quotes', content: 'Office', position: { x: -117, y: -1409 }},
+  { id: 12, title: 'Weather', content: 'Weather', position: { x: -117, y: -1409 }},
 ];
 
 const Dashboard = () => {

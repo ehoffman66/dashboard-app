@@ -9,3 +9,4 @@ export { default as CollegeFootballScores } from './CollegeFootball/CollegeFootb
 export { default as NASAApod } from './NASAApod/NASAApod';
 export { default as BirthdayReminder } from './BirthdayReminders/BirthdayReminders';
 export { default as OfficeQuotes} from './OfficeQuotes/OfficeQuotes';
+export { default as Weather} from './Weather/Weather';
