@@ -28,10 +28,13 @@ const WeatherWidget = () => {
   if (error) return <div>Error: {error}</div>;
   if (!weather) return null;
 
+  // Convert Celsius to Fahrenheit
+  const fahrenheit = weather.main.temp * 9/5 + 32;
+
   return (
     <div className="weather-widget">
       <h2>Weather in {city}</h2>
-      <p>{weather.main.temp} °C</p>
+      <p>{fahrenheit.toFixed(2)} °F</p>
       <p>{weather.weather[0].main}</p>
     </div>
   );
