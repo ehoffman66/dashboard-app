@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Weather.css'; // Import CSS file
 
 const WeatherWidget = () => {
   const [weather, setWeather] = useState(null);
@@ -31,10 +32,16 @@ const WeatherWidget = () => {
   // Convert Celsius to Fahrenheit
   const fahrenheit = weather.main.temp * 9/5 + 32;
 
+  // Construct URL to weather icon
+  const iconUrl = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`;
+
   return (
     <div className="weather-widget">
       <h2>Weather in {city}</h2>
-      <p>{fahrenheit.toFixed(2)} °F</p>
+      <div className="weather-info">
+        <img src={iconUrl} alt="Weather icon" />
+        <p>{fahrenheit.toFixed(2)} °F</p>
+      </div>
       <p>{weather.weather[0].main}</p>
     </div>
   );
