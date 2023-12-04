@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const WeatherWidget = ({ city }) => {
+const WeatherWidget = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const city = 'Baltimore';
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
-    const city = 'Baltmore';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
+    console.log('url', url);
     axios.get(url)
       .then(response => {
         setWeather(response.data);
@@ -21,7 +22,7 @@ const WeatherWidget = ({ city }) => {
         setError('Failed to load weather data.');
         setLoading(false);
       });
-  }, [city]);
+  }, []); // Removed city from dependency array
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
