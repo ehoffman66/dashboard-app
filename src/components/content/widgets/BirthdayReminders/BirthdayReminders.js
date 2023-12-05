@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './BirthdayReminders.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const BirthdayWidget = () => {
   const [birthdays, setBirthdays] = useState([]);
@@ -59,7 +61,11 @@ const BirthdayWidget = () => {
         {birthdays.map((birthday, index) => (
           <div key={index} className="birthday">
             {birthday.name} - {birthday.month}/{birthday.day}
-            <button onClick={() => deleteBirthday(index)}>Delete</button>
+            <FontAwesomeIcon 
+              className="delete-icon"
+              icon={faTrash} 
+              onClick={() => deleteBirthday(index)} 
+            />
           </div>
         ))}
       </div>
