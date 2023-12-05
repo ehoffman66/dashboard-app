@@ -2,7 +2,7 @@
     background-color: #fff;
     text-align: center;
   }
-
+  
   .weather-info {
     display: flex;
     align-items: center;
@@ -10,4 +10,6 @@
   
   .weather-info img {
     margin-right: 10px;
+    width: 120px; /* Adjust as needed */
+    height: 120px; /* Adjust as needed */
   }
