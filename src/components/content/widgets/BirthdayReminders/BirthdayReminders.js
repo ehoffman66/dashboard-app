@@ -9,11 +9,11 @@ const BirthdayWidget = () => {
 
   useEffect(() => {
     const loadedBirthdays = JSON.parse(localStorage.getItem('birthdays')) || [];
-    setBirthdays(loadedBirthdays);
+    setBirthdays(sortBirthdays(loadedBirthdays));
   }, []);
 
   const addBirthday = () => {
-    const updatedBirthdays = [...birthdays, newBirthday];
+    const updatedBirthdays = sortBirthdays([...birthdays, newBirthday]);
     setBirthdays(updatedBirthdays);
     localStorage.setItem('birthdays', JSON.stringify(updatedBirthdays));
     setNewBirthday({ name: '', month: '', day: '' });
@@ -27,6 +27,34 @@ const BirthdayWidget = () => {
 
   const handleInputChange = (e) => {
     setNewBirthday({ ...newBirthday, [e.target.name]: e.target.value });
+  };
+
+  const sortBirthdays = (birthdays) => {
+    const today = new Date();
+    const currentMonth = today.getMonth() + 1; // getMonth() is zero-based
+    const currentDay = today.getDate();
+
+    return birthdays.sort((a, b) => {
+      const aMonth = parseInt(a.month);
+      const bMonth = parseInt(b.month);
+      const aDay = parseInt(a.day);
+      const bDay = parseInt(b.day);
+
+      if (aMonth === bMonth) {
+        if (aDay === bDay) return 0;
+        return (aDay < bDay) ? -1 : 1;
+      }
+
+      if (aMonth < currentMonth || (aMonth === currentMonth && aDay < currentDay)) {
+        return 1;
+      }
+
+      if (bMonth < currentMonth || (bMonth === currentMonth && bDay < currentDay)) {
+        return -1;
+      }
+
+      return (aMonth < bMonth) ? -1 : 1;
+    });
   };
 
   return (
