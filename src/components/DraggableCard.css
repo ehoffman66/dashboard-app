@@ -1,27 +1,43 @@
 .draggable-card {
-  position: relative;
-  padding: 16px;
-  margin: 8px;
+  padding: 20px;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 10px 20px rgba(73, 73, 73, 0.35);
-  cursor: grab;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.draggable-card:hover {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .card-title {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  color: #ff7f50;
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font: 1.5em "Open Sans", sans-serif;
+  font-weight: bold;
+  color: rgb(18, 168, 168);
+  padding-bottom: 10px;
 }
 
-.close-button {
-  float: right;
+.menu-container {
+  position: relative;
+}
+
+.menu-button {
+  background: none;
+  border: none;
   cursor: pointer;
+}
+
+.icon {
+  height: 1.5em;
+  width: 1.5em;
+}
+
+.menu-items {
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
 }
