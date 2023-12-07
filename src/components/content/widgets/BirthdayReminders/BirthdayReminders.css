@@ -1,48 +1,57 @@
 .birthday-widget {
+  max-width: 500px;
+  margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 8px;
 }
 
-.birthday-widget h2 {
-  text-align: center;
-  color: #333;
-  font-size: 24px;
-}
-
-.birthday-widget div {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.birthday-widget input[type="text"] {
-  flex: 1;
+.birthday-widget input {
   padding: 10px;
-  margin-right: 5px;
-  border-radius: 4px;
   border: 1px solid #ccc;
-}
-
-.birthday-widget input[name="month"],
-.birthday-widget input[name="day"] {
-  width: 50px;
+  border-radius: 4px;
+  margin-right: 10px;
 }
 
 .birthday-widget button {
-  padding: 10px 20px;
+  padding: 10px 10px; /* Reduced from 20px to 10px */
   background-color: #007BFF;
   color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  margin-right: 3px;
+}
+
+.birthday-widget button:last-child {
+  margin-right: 0;
+}
+
+.birthday-widget button.edit {
+  background-color: #ffc107;
+}
+
+.birthday-widget button.cancel {
+  background-color: #dc3545;
 }
 
 .birthday-widget button:hover {
-  background-color: #0056b3;
+  opacity: 0.8;
+}
+
+.birthday-widget ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.birthday-widget li {
+  display: flex;
+  justify-content: flex-start; /* Changed from space-between */
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
 }
 
 .birthday-widget div.birthday-list {
@@ -83,4 +92,29 @@
 
 .delete-icon:hover {
   color: red; /* Color on hover */
+}
+
+.birthday-widget .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80px; /* Adjust as needed */
+}
+
+.birthday-widget .button-container {
+  margin-left: auto;
+}
+
+.birthday-widget button {
+  padding: 10px 10px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 0; /* Remove margin-right */
+}
+
+.birthday-widget input.month,
+.birthday-widget input.day {
+  width: 50px; /* Adjust as needed */
 }

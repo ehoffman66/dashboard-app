@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './BirthdayReminders.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPencilAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const BirthdayWidget = () => {
   const [birthdays, setBirthdays] = useState([]);
   const [newBirthday, setNewBirthday] = useState({ name: '', month: '', day: '' });
+  const [editIndex, setEditIndex] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
     const loadedBirthdays = JSON.parse(localStorage.getItem('birthdays')) || [];
@@ -23,6 +25,26 @@ const BirthdayWidget = () => {
     const updatedBirthdays = birthdays.filter((_, i) => i !== index);
     setBirthdays(updatedBirthdays);
     localStorage.setItem('birthdays', JSON.stringify(updatedBirthdays));
+  };
+
+  const editBirthday = (index) => {
+    setNewBirthday(birthdays[index]);
+    setEditIndex(index);
+    setIsEditing(true);
+  };
+
+  const updateBirthday = () => {
+    const updatedBirthdays = [...birthdays];
+    updatedBirthdays[editIndex] = newBirthday;
+    setBirthdays(sortBirthdays(updatedBirthdays));
+    localStorage.setItem('birthdays', JSON.stringify(updatedBirthdays));
+    setNewBirthday({ name: '', month: '', day: '' });
+    setIsEditing(false);
+  };
+
+  const cancelEdit = () => {
+    setNewBirthday({ name: '', month: '', day: '' });
+    setIsEditing(false);
   };
 
   const handleInputChange = (e) => {
@@ -74,6 +96,7 @@ const BirthdayWidget = () => {
           onChange={handleInputChange} 
           placeholder="Month" 
           maxLength="2"
+          className="month"
         />
         <input 
           type="text" 
@@ -82,21 +105,28 @@ const BirthdayWidget = () => {
           onChange={handleInputChange} 
           placeholder="Day" 
           maxLength="2"
+          className="day"
         />
-        <button onClick={addBirthday}>Add</button>
-      </div>
-      <div className="birthday-list">
-        {birthdays.map((birthday, index) => (
-          <div key={index} className="birthday">
-            {birthday.name} - {birthday.month}/{birthday.day}
-            <FontAwesomeIcon 
-              className="delete-icon"
-              icon={faTrash} 
-              onClick={() => deleteBirthday(index)} 
-            />
+        {isEditing ? (
+          <div>
+            <button onClick={updateBirthday}>Update</button>
+            <button onClick={cancelEdit}><FontAwesomeIcon icon={faTimes} /></button>
           </div>
-        ))}
+        ) : (
+          <button onClick={addBirthday}>Add</button>
+        )}
       </div>
+      <ul>
+        {birthdays.map((birthday, index) => (
+          <li key={index}>
+            {birthday.name} - {birthday.month}/{birthday.day}
+            <div className="button-container">
+              <button onClick={() => deleteBirthday(index)}><FontAwesomeIcon icon={faTrash} /></button>
+              <button onClick={() => editBirthday(index)}><FontAwesomeIcon icon={faPencilAlt} /></button>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
