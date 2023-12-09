@@ -1,0 +1,9 @@
+id: "office-quotes"
+name: "Office Quotes"
+description: "Get a random quote from The Office."
+thumbnail: "https://i.imgur.com/5JQwZ5M.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Entertainment"
+tags: ["quotes", "the office", "entertainment", "funny"]
+```
