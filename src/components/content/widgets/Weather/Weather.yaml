@@ -1,0 +1,9 @@
+id: "weather"
+name: "Weather"
+description: "Get the current weather for a location."
+thumbnail: "https://i.imgur.com/5JQwZ5M.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Entertainment"
+tags: ["weather", "entertainment", "funny"]
+```
