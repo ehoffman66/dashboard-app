@@ -13,7 +13,7 @@
 }
 
 .birthday-widget button {
-  padding: 10px 10px; /* Reduced from 20px to 10px */
+  padding: 10px 10px;
   background-color: #007BFF;
   color: #fff;
   border: none;
@@ -45,7 +45,7 @@
 
 .birthday-widget li {
   display: flex;
-  justify-content: flex-start; /* Changed from space-between */
+  justify-content: flex-start;
   align-items: center;
   padding: 10px;
   border: 1px solid #ccc;
@@ -86,17 +86,17 @@
 
 .delete-icon {
   cursor: pointer;
-  color: black; /* Default color */
+  color: black;
 }
 
 .delete-icon:hover {
-  color: red; /* Color on hover */
+  color: red; 
 }
 
 .birthday-widget .button-container {
   display: flex;
   justify-content: space-between;
-  width: 80px; /* Adjust as needed */
+  width: 80px; 
 }
 
 .birthday-widget .button-container {
@@ -110,10 +110,10 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  margin-right: 0; /* Remove margin-right */
+  margin-right: 0; 
 }
 
 .birthday-widget input.month,
 .birthday-widget input.day {
-  width: 50px; /* Adjust as needed */
+  width: 50px; 
 }
