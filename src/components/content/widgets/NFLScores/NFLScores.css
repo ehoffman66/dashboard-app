@@ -1,20 +1,20 @@
 .nfl-scores-content, .game, .team {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 5px;
   box-sizing: border-box;
 }
 
 .nfl-scores-content {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .games-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 15px;
-  min-height: 500px;
+  min-height: 400px;
 }
 
 .game {
