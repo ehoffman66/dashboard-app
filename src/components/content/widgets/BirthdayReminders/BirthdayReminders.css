@@ -14,7 +14,7 @@
 
 .birthday-widget button {
   padding: 10px 10px;
-  background-color: #007BFF;
+  background-color: #26a29b;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -116,4 +116,8 @@
 .birthday-widget input.month,
 .birthday-widget input.day {
   width: 50px; 
+}
+
+.birthday-widget button.update {
+  margin-right: 5px; 
 }

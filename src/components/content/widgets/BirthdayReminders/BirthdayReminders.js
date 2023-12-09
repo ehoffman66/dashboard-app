@@ -109,7 +109,7 @@ const BirthdayWidget = () => {
         />
         {isEditing ? (
           <div>
-            <button onClick={updateBirthday}>Update</button>
+            <button className="update" onClick={updateBirthday}>Update</button>            
             <button onClick={cancelEdit}><FontAwesomeIcon icon={faTimes} /></button>
           </div>
         ) : (
