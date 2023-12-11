@@ -85,4 +85,11 @@
       margin-top: 10px;
     }
   }
+
+  .bookmark-list-item img {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+  }
   

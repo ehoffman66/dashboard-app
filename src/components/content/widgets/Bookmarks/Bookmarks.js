@@ -70,16 +70,22 @@ const BookmarkComponent = () => {
         <button type="submit" className="bookmark-submit-btn">Add</button>
       </form>
       <ul className="bookmark-list">
-        {bookmarks.map((bookmark, index) => (
-          <li key={index} className="bookmark-list-item">
-            <a href={bookmark} target="_blank" rel="noopener noreferrer">
-              {formatDisplayUrl(bookmark)}
-            </a>
-            <button onClick={() => removeBookmark(index)} className="bookmark-remove-btn">
-              Remove
-            </button>
-          </li>
-        ))}
+        {bookmarks.map((bookmark, index) => {
+          const domain = new URL(bookmark).hostname;
+          const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}`;
+  
+          return (
+            <li key={index} className="bookmark-list-item">
+              <img src={faviconUrl} alt="Favicon" />
+              <a href={bookmark} target="_blank" rel="noopener noreferrer">
+                {formatDisplayUrl(bookmark)}
+              </a>
+              <button onClick={() => removeBookmark(index)} className="bookmark-remove-btn">
+                Remove
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
