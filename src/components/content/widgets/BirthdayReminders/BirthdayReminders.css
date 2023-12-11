@@ -48,9 +48,9 @@
   justify-content: flex-start;
   align-items: center;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
+  border-bottom: 1px solid #ccc; /* Add this line */
 }
 
 .birthday-widget div.birthday-list {
@@ -120,4 +120,25 @@
 
 .birthday-widget button.update {
   margin-right: 5px; 
+}
+
+.birthday-widget .birthday-icon {
+  font-size: 30px; /* Adjust as needed */
+  padding-right: 5px;
+  transition: transform 0.3s ease; /* Add this line */
+}
+
+.birthday-widget .birthday-icon:hover {
+  transform: scale(1.2); /* Add this line */
+}
+
+.birthday-widget .birthday-name {
+  font-size: 18px; /* Larger font size */
+  color: #333; /* Dark gray color */
+  font-weight: 500; /* Semi-bold font */
+}
+
+.birthday-widget .birthday-date {
+  font-size: 16px; /* Larger font size */
+  color: #666; /* Medium gray color */
 }

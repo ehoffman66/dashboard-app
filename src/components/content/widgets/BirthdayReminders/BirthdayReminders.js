@@ -119,7 +119,9 @@ const BirthdayWidget = () => {
       <ul>
         {birthdays.map((birthday, index) => (
           <li key={index}>
-            {birthday.name} - {birthday.month}/{birthday.day}
+            <span className="birthday-icon">🎂</span> 
+            <span className="birthday-name">{birthday.name}</span> -  
+            <span className="birthday-date"> {birthday.month}/{birthday.day}</span>
             <div className="button-container">
               <button onClick={() => deleteBirthday(index)}><FontAwesomeIcon icon={faTrash} /></button>
               <button onClick={() => editBirthday(index)}><FontAwesomeIcon icon={faPencilAlt} /></button>
