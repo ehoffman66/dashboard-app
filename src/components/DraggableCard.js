@@ -4,7 +4,7 @@ import { MenuIcon } from '@heroicons/react/outline';
 import Draggable from 'react-draggable';
 import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent, 
     BitcoinPriceContent, BookmarkComponent, F1StandingsWidget, 
-    CollegeFootballScores, NASAApod, BirthdayReminder, OfficeQuotes, Weather } from './content/widgets';
+    CollegeFootballScores, NASAApod, BirthdayReminder, OfficeQuotes, Weather, HackerNews } from './content/widgets';
 import './DraggableCard.css';
 
 const contentComponents = {
@@ -20,6 +20,7 @@ const contentComponents = {
   Birthday: BirthdayReminder,
   Office: OfficeQuotes,
   Weather: Weather,
+  HackerNews: HackerNews,
 };
 
 const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDrag }) => {
