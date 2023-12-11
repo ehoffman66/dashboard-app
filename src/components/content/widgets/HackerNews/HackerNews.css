@@ -1,0 +1,25 @@
+.hacker-news-widget {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hacker-news-widget h2 {
+    margin-bottom: 10px;
+  }
+  
+  .hacker-news-widget ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .hacker-news-widget li {
+    margin-bottom: 8px;
+  }
+  
+  .hacker-news-widget li a {
+    color: #ff6600; /* Hacker News orange */
+    text-decoration: none;
+  }
+  
