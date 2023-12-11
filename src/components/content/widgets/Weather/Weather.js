@@ -37,7 +37,7 @@ const WeatherWidget = () => {
 
   return (
     <div className="weather-widget">
-      <h2>Weather in {city}</h2>
+      <h2>{city}</h2>
       <div className="weather-info">
         <img src={iconUrl} alt="Weather icon" />
         <p>{fahrenheit.toFixed(2)} °F</p>

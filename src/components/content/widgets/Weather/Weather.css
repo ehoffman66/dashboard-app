@@ -13,3 +13,8 @@
     width: 120px; /* Adjust as needed */
     height: 120px; /* Adjust as needed */
   }
+
+  .weather-widget .weather-info p {
+    font-size: 35px; 
+    font-weight: bold;
+  }
