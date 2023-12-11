@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './HackerNews.css';
 
 const HackerNewsWidget = () => {
   const [topStories, setTopStories] = useState([]);
