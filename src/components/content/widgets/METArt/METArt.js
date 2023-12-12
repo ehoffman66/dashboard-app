@@ -30,7 +30,6 @@ const ArtworkWidget = () => {
 
   return (
     <div className="artwork-widget">
-      <h2>Artwork of the Day</h2>
       {artwork && (
         <div>
           <h3>{artwork.title}</h3>

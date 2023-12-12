@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent, 
     BitcoinPriceContent, BookmarkComponent, F1StandingsWidget, 
     CollegeFootballScores, NASAApod, BirthdayReminder, OfficeQuotes, 
-    Weather, HackerNews, RandomQuote } from './content/widgets';
+    Weather, HackerNews, RandomQuote, METArt } from './content/widgets';
 import './DraggableCard.css';
 
 const contentComponents = {
@@ -23,6 +23,7 @@ const contentComponents = {
   Weather: Weather,
   HackerNews: HackerNews,
   RandomQuote: RandomQuote,
+  METArt: METArt,
 };
 
 const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDrag }) => {
