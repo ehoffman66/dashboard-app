@@ -1,14 +1,13 @@
 .artwork-widget {
-    width: 400px;
-    height: 400px; 
-    background-color: #fff;
-    border-radius: 8px;
+    width: 400px; /* adjust this to your liking */
+    height: 400px; /* adjust this to your liking */
     text-align: center;
+    margin: 0 auto; /* centers the widget if its width is less than its container's width */
+    position: relative;
   }
   
-  .artwork-widget img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
+  #artwork-image {
+    width: 50% !important; /* Adjust as needed */
+    height: auto !important;
+    object-fit: cover;
   }
-  
