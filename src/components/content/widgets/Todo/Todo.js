@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import './Todo.css';
 
 const TodoWidget = () => {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState('');
+  const [dueDate, setDueDate] = useState('');
 
   const addTask = () => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
+      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false, date: dueDate ? new Date(dueDate) : null }]);
       setNewTask('');
+      setDueDate('');
     }
   };
 
@@ -27,24 +31,33 @@ const TodoWidget = () => {
 
   return (
     <div className="todo-widget">
-      <h2>To-Do List</h2>
       <input 
         type="text" 
         value={newTask}
         onChange={(e) => setNewTask(e.target.value)}
         placeholder="Add new task"
       />
+      <input 
+        type="date" 
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+      />
       <button onClick={addTask}>Add</button>
       <ul>
         {tasks.map(task => (
           <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-            <input 
-              type="checkbox" 
-              checked={task.completed} 
-              onChange={() => toggleTaskCompletion(task.id)} 
-            />
-            {task.text}
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
+            <div>
+              <input 
+                type="checkbox" 
+                checked={task.completed} 
+                onChange={() => toggleTaskCompletion(task.id)} 
+              />
+              {task.text}
+              {task.date && <span className="task-date">{task.date.toISOString().split('T')[0]}</span>}
+            </div>
+            <button onClick={() => deleteTask(task.id)}>
+              <FontAwesomeIcon icon={faTrash} />
+            </button>
           </li>
         ))}
       </ul>
