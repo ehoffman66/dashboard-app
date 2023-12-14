@@ -38,10 +38,12 @@ const TodoWidget = () => {
       <ul>
         {tasks.map(task => (
           <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+            <input 
+              type="checkbox" 
+              checked={task.completed} 
+              onChange={() => toggleTaskCompletion(task.id)} 
+            />
             {task.text}
-            <button onClick={() => toggleTaskCompletion(task.id)}>
-              {task.completed ? 'Unmark' : 'Complete'}
-            </button>
             <button onClick={() => deleteTask(task.id)}>Delete</button>
           </li>
         ))}
