@@ -1,0 +1,9 @@
+id: "random-quote"
+name: "Random Quote"
+description: "Shows a random quote."
+thumbnail: "images/nasa-apod-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "History"
+tags: ["quote", "history", "famous", "people"]
+```
