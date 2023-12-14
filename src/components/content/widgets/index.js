@@ -13,3 +13,4 @@ export { default as Weather} from './Weather/Weather';
 export { default as HackerNews} from './HackerNews/HackerNews';
 export { default as RandomQuote} from './RandomQuote/RandomQuote';
 export { default as METArt} from './METArt/METArt';
+export { default as Todo} from './Todo/Todo';

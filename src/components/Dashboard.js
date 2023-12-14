@@ -19,6 +19,7 @@ const DEFAULT_CARDS = [
   { id: 13, title: 'Hacker News', content: 'HackerNews', position: { x: -117, y: -1500 }},
   { id: 14, title: 'Random Quote', content: 'RandomQuote', position: { x: -117, y: -1600 }},
   { id: 15, title: 'MET Art', content: 'METArt', position: { x: -184, y: -32 }},
+  { id: 16, title: 'Todo', content: 'Todo', position: { x: -184, y: -32 }},
 ];
 
 const Dashboard = () => {

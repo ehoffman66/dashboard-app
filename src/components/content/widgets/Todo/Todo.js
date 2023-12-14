@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Todo.css';
 
 const TodoWidget = () => {
   const [tasks, setTasks] = useState([]);
