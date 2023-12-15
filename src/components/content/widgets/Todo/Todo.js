@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import './Todo.css';
 
 const TodoWidget = () => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
   const [newTask, setNewTask] = useState('');
   const [dueDate, setDueDate] = useState('');
 
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
   const addTask = () => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false, date: dueDate ? new Date(dueDate) : null }]);
+      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false, date: dueDate ? new Date(dueDate).toISOString() : null }]);
       setNewTask('');
       setDueDate('');
     }
@@ -53,7 +57,7 @@ const TodoWidget = () => {
                 onChange={() => toggleTaskCompletion(task.id)} 
               />
               {task.text}
-              {task.date && <span className="task-date">{task.date.toISOString().split('T')[0]}</span>}
+              {task.date && <span className="task-date">{task.date.split('T')[0]}</span>}
             </div>
             <button onClick={() => deleteTask(task.id)}>
               <FontAwesomeIcon icon={faTrash} />
