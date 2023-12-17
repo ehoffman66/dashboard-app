@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import './Todo.css';
 
 const TodoWidget = () => {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
   const [newTask, setNewTask] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [editing, setEditing] = useState(null);
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -33,6 +34,16 @@ const TodoWidget = () => {
     }));
   };
 
+  const editTask = (taskId, newText) => {
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        return { ...task, text: newText };
+      }
+      return task;
+    }));
+    setEditing(null);
+  };
+
   return (
     <div className="todo-widget">
       <input 
@@ -56,7 +67,25 @@ const TodoWidget = () => {
                 checked={task.completed} 
                 onChange={() => toggleTaskCompletion(task.id)} 
               />
-              {task.text}
+              {editing === task.id ? (
+                <>
+                  <input 
+                    type="text" 
+                    value={task.text}
+                    onChange={(e) => editTask(task.id, e.target.value)}
+                    autoFocus
+                    onFocus={(e) => e.target.select()}
+                  />
+                  <button onClick={() => setEditing(null)}>Save</button>
+                </>
+              ) : (
+                <>
+                  <span>{task.text}</span>
+                  <button className="edit-button" onClick={() => setEditing(task.id)}>
+                    <FontAwesomeIcon icon={faPencilAlt} />
+                  </button>
+                </>
+              )}
               {task.date && <span className="task-date">{task.date.split('T')[0]}</span>}
             </div>
             <button onClick={() => deleteTask(task.id)}>

@@ -58,3 +58,10 @@
   font-size: 0.8em;
   color: #888;
 }
+
+.todo-widget button.edit-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000; /* Or any color you prefer */
+}
