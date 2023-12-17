@@ -13,23 +13,24 @@
   font-size: 24px;
 }
 
-.todo-widget input[type="text"], .todo-widget input[type="date"] {
+.todo-widget input[type="text"],
+.todo-widget input[type="date"] {
   margin-right: 5px;
+  margin-bottom: 10px;
   padding: 10px;
   border: none;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 10px;
 }
 
 .todo-widget button {
   padding: 10px 20px;
+  margin-bottom: 10px;
   border: none;
   border-radius: 4px;
   background-color: #007BFF;
   color: white;
   cursor: pointer;
-  margin-bottom: 10px;
 }
 
 .todo-widget button:hover {
@@ -46,7 +47,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  /* rest of your styles */
 }
 
 .todo-widget li input[type="checkbox"] {
@@ -63,5 +63,9 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: #000; /* Or any color you prefer */
+  color: #000;
+}
+
+.task-date.overdue {
+  color: red;
 }
