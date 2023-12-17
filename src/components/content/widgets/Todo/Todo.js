@@ -59,7 +59,7 @@ const TodoWidget = () => {
       />
       <button onClick={addTask}>Add</button>
       <ul>
-        {tasks.map(task => (
+        {tasks.sort((a, b) => new Date(a.date) - new Date(b.date)).map(task => (
           <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
             <div>
               <input 
