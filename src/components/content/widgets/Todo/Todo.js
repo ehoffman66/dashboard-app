@@ -86,8 +86,7 @@ const TodoWidget = () => {
                   </button>
                 </>
               )}
-              {task.date && <span className="task-date">{task.date.split('T')[0]}</span>}
-            </div>
+              {task.date && <span className="task-date">{new Date(task.date).toLocaleDateString('en-US')}</span>}            </div>
             <button onClick={() => deleteTask(task.id)}>
               <FontAwesomeIcon icon={faTrash} />
             </button>
