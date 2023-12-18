@@ -119,7 +119,7 @@ const BirthdayWidget = () => {
       <ul>
         {birthdays.map((birthday, index) => (
           <li key={index}>
-            <span className="birthday-icon">🎂</span> 
+            <span role="img" aria-label="birthday cake" className="birthday-icon">🎂</span> 
             <span className="birthday-name">{birthday.name}</span> -  
             <span className="birthday-date"> {birthday.month}/{birthday.day}</span>
             <div className="button-container">
