@@ -46,7 +46,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .todo-widget li input[type="checkbox"] {
@@ -54,6 +54,13 @@
 }
 
 .task-date {
+  display: block;
+  font-size: 0.8em;
+  color: #888;
+  margin-top: -10px; /* Adjust top margin */
+}
+
+.task-category {
   display: block;
   font-size: 0.8em;
   color: #888;

@@ -7,6 +7,7 @@ const TodoWidget = () => {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
   const [newTask, setNewTask] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [newCategory, setNewCategory] = useState(''); // New state for category
   const [editing, setEditing] = useState(null);
 
   useEffect(() => {
@@ -15,9 +16,10 @@ const TodoWidget = () => {
 
   const addTask = () => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false, date: dueDate ? new Date(dueDate).toISOString() : null }]);
+      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false, date: dueDate ? new Date(dueDate).toISOString() : null, category: newCategory }]);
       setNewTask('');
       setDueDate('');
+      setNewCategory('');
     }
   };
 
@@ -56,6 +58,12 @@ const TodoWidget = () => {
         type="date" 
         value={dueDate}
         onChange={(e) => setDueDate(e.target.value)}
+      />
+      <input 
+        type="text" 
+        value={newCategory}
+        onChange={(e) => setNewCategory(e.target.value)}
+        placeholder="Add category"
       />
       <button onClick={addTask}>Add</button>
       <ul>
@@ -101,6 +109,7 @@ const TodoWidget = () => {
                 </>
               )}
               {task.date && <span className={`task-date ${new Date(task.date) < new Date() && !task.completed ? 'overdue' : ''}`}>{new Date(task.date).toLocaleDateString('en-US')}</span>}
+              <span className="task-category">{task.category}</span> {/* Display category */}
             </div>
             <button onClick={() => deleteTask(task.id)}>
               <FontAwesomeIcon icon={faTrash} />
