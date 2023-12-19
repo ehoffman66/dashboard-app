@@ -7,6 +7,8 @@ import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent,
     CollegeFootballScores, NASAApod, BirthdayReminder, OfficeQuotes, 
     Weather, HackerNews, RandomQuote, METArt, Todo } from './content/widgets';
 import './DraggableCard.css';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid'; // Import Grid from MUI
 
 const contentComponents = {
   NFL: NFLContent,
@@ -41,43 +43,45 @@ const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDra
 
   return (
     <Draggable handle=".card-title" defaultPosition={{ x, y }} onStop={handleStop} bounds="parent">
-      <div className={`draggable-card ${isFlipped ? 'flipped' : ''}`}>
-        <div className="card-front">
-          <div className="card-title">
-            {title}
-            <Menu as="div" className="menu-container">
-              <Menu.Button className="menu-button">
-                <MenuIcon className="icon" />
-              </Menu.Button>
-              <Menu.Items className="menu-items">
-                <Menu.Item>
-                  {({ active }) => (
-                    <button 
-                      className={`menu-button ${active ? 'bg-blue-500' : ''}`} 
-                      onClick={toggleFlip}
-                    >
-                      Settings
-                    </button>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button 
-                      className={`menu-button ${active ? 'bg-blue-500' : ''}`} 
-                      onClick={toggleFlip}
-                    >
-                      Remove Card
-                    </button>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
+      <Grid item xs={12} sm={6} md={4} lg={3}> {/* Use Grid here */}
+        <Card className={`draggable-card ${isFlipped ? 'flipped' : ''}`}> {/* Use Card here */}
+          <div className="card-front">
+            <div className="card-title">
+              {title}
+              <Menu as="div" className="menu-container">
+                <Menu.Button className="menu-button">
+                  <MenuIcon className="icon" />
+                </Menu.Button>
+                <Menu.Items className="menu-items">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button 
+                        className={`menu-button ${active ? 'bg-blue-500' : ''}`} 
+                        onClick={toggleFlip}
+                      >
+                        Settings
+                      </button>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button 
+                        className={`menu-button ${active ? 'bg-blue-500' : ''}`} 
+                        onClick={toggleFlip}
+                      >
+                        Remove Card
+                      </button>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Menu>
+            </div>
+            <div className="card-content">
+              <ContentComponent />
+            </div>
           </div>
-          <div className="card-content">
-            <ContentComponent />
-          </div>
-        </div>
-      </div>
+        </Card>
+      </Grid>
     </Draggable>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import DraggableCard from './DraggableCard';
 import Navbar from './Navbar';
+import DraggableCard from './DraggableCard';
+import Grid from '@mui/material/Grid'; // Import Grid from MUI
 import './Dashboard.css';
 
 const DEFAULT_CARDS = [
@@ -55,7 +56,7 @@ const Dashboard = () => {
   return (
     <div>
       <Navbar widgets={cards} />
-      <div className="dashboard">
+      <Grid container spacing={3} className="dashboard"> {/* Use Grid container here */}
         {cards.map((card) => (
           <DraggableCard
             key={card.id}
@@ -67,8 +68,9 @@ const Dashboard = () => {
             onClose={onClose}
           />
         ))}
-      </div>
+      </Grid>
     </div>
   );
-};    
+};
+
 export default Dashboard;

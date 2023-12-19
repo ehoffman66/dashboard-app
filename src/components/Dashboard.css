@@ -9,4 +9,5 @@
   background-color: #e2e9f3; /* Or any dark color you prefer */
   color: #0c0202; /* Adjust text color for better readability */
   min-height: 100vh; /* Ensure it covers the full viewport height */
+  width: 100%;
 }
