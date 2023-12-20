@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import Chip from '@mui/material/Chip'; // Import Chip from Material-UI
 import './Todo.css';
 
 const TodoWidget = () => {
@@ -9,6 +10,7 @@ const TodoWidget = () => {
   const [dueDate, setDueDate] = useState('');
   const [newCategory, setNewCategory] = useState(''); // New state for category
   const [editing, setEditing] = useState(null);
+  const [filter, setFilter] = useState('all'); // New state for filter
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -46,6 +48,24 @@ const TodoWidget = () => {
     setEditing(null);
   };
 
+  const handleFilterChange = (newFilter) => {
+    setFilter(newFilter);
+  };
+
+  const filteredTasks = tasks.filter(task => {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const taskDate = new Date(task.date);
+    taskDate.setHours(0, 0, 0, 0);
+    if (filter === 'today') {
+      return taskDate.getTime() === today.getTime();
+    } else if (filter === 'overdue') {
+      return task.date && taskDate < today;
+    } else {
+      return true;
+    }
+  });
+
   return (
     <div className="todo-widget">
       <input 
@@ -66,56 +86,57 @@ const TodoWidget = () => {
         placeholder="Add category"
       />
       <button onClick={addTask}>Add</button>
+      <div className="filter-chips">
+        <Chip label="All" clickable color={filter === 'all' ? 'primary' : 'default'} onClick={() => handleFilterChange('all')} />
+        <Chip label="Today" clickable color={filter === 'today' ? 'primary' : 'default'} onClick={() => handleFilterChange('today')} />
+        <Chip label="Overdue" clickable color={filter === 'overdue' ? 'primary' : 'default'} onClick={() => handleFilterChange('overdue')} />
+      </div>
       <ul>
-        {tasks.sort((a, b) => {
-          if (a.completed !== b.completed) {
-            return a.completed ? 1 : -1;
-          }
-          if (a.date && b.date) {
-            return new Date(a.date) - new Date(b.date);
-          }
-          if (!a.date) {
-            return 1;
-          }
-          if (!b.date) {
-            return -1;
-          }
-          return 0;
-        }).map(task => (
-          <li key={task.id} style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
-            <div>
-              <input 
-                type="checkbox" 
-                checked={task.completed} 
-                onChange={() => toggleTaskCompletion(task.id)} 
-              />
-              {editing === task.id ? (
-                <>
-                  <input 
-                    type="text" 
-                    value={task.text}
-                    onChange={(e) => editTask(task.id, e.target.value)}
-                    autoFocus
-                    onFocus={(e) => e.target.select()}
-                  />
-                  <button onClick={() => setEditing(null)}>Save</button>
-                </>
-              ) : (
-                <>
-                  <span>{task.text}</span>
-                  <button className="edit-button" onClick={() => setEditing(task.id)}>
-                    <FontAwesomeIcon icon={faPencilAlt} />
-                  </button>
-                </>
-              )}
-              {task.date && <span className={`task-date ${new Date(task.date) < new Date() && !task.completed ? 'overdue' : ''}`}>{new Date(task.date).toLocaleDateString('en-US')}</span>}
-              <span className="task-category">{task.category}</span> {/* Display category */}
-            </div>
-            <button onClick={() => deleteTask(task.id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-          </li>
-        ))}
+        {filteredTasks.map(task => {
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          const taskDate = new Date(task.date);
+          taskDate.setHours(0, 0, 0, 0);
+          const isOverdue = task.date && taskDate < today;
+
+          return (
+            <li key={task.id} className="task-item" style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+              <div className="task-content">
+                <input 
+                  type="checkbox" 
+                  checked={task.completed} 
+                  onChange={() => toggleTaskCompletion(task.id)} 
+                />
+                {editing === task.id ? (
+                  <>
+                    <input 
+                      type="text" 
+                      value={task.text}
+                      onChange={(e) => editTask(task.id, e.target.value)}
+                      autoFocus
+                      onFocus={(e) => e.target.select()}
+                    />
+                    <button onClick={() => setEditing(null)}>Save</button>
+                  </>
+                ) : (
+                  <>
+                    <span>{task.text}</span>
+                    <button className="edit-button" onClick={() => setEditing(task.id)}>
+                      <FontAwesomeIcon icon={faPencilAlt} />
+                    </button>
+                  </>
+                )}
+                {task.date && <span className={`task-date ${isOverdue ? 'overdue' : ''}`}>{new Date(task.date).toLocaleDateString()}</span>}
+                {task.category && <span className="task-category">{task.category}</span>}
+              </div>
+              <div className="task-actions">
+                <button className="delete-button" onClick={() => deleteTask(task.id)}>
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
