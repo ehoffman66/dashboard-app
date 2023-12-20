@@ -8,7 +8,7 @@ import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent,
     Weather, HackerNews, RandomQuote, METArt, Todo } from './content/widgets';
 import './DraggableCard.css';
 import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid'; // Import Grid from MUI
+import Grid from '@mui/material/Grid';
 
 const contentComponents = {
   NFL: NFLContent,
@@ -43,8 +43,12 @@ const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDra
 
   return (
     <Draggable handle=".card-title" defaultPosition={{ x, y }} onStop={handleStop} bounds="parent">
-      <Grid item xs={12} sm={6} md={4} lg={3}> {/* Use Grid here */}
-        <Card className={`draggable-card ${isFlipped ? 'flipped' : ''}`}> {/* Use Card here */}
+      <Grid item xs={12} sm={6} md={4} lg={3}>
+        <Card 
+          className={`draggable-card ${isFlipped ? 'flipped' : ''}`} 
+          elevation={6} // Set the elevation here
+          sx={{ borderRadius: 5 }} // Round the corners here
+        >
           <div className="card-front">
             <div className="card-title">
               {title}
