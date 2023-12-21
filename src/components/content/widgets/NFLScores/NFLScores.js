@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Pagination from '@mui/material/Pagination';
 import './NFLScores.css'; // Ensure this is the path to your CSS file
 
 const NFLScoresContent = () => {
@@ -41,9 +42,11 @@ const NFLScoresContent = () => {
   const firstGameIndex = lastGameIndex - gamesPerPage;
   const currentGames = scoreboard?.events?.slice(firstGameIndex, lastGameIndex);
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
   const totalPages = scoreboard?.events ? Math.ceil(scoreboard.events.length / gamesPerPage) : 0;
+
+  const handleChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   if (loading) return <div>Loading NFL scores...</div>;
   if (error) return <div>{error}</div>;
@@ -72,11 +75,7 @@ const NFLScoresContent = () => {
       </div>
       {totalPages > 1 && (
         <div className="pagination">
-          {[...Array(totalPages).keys()].map(number => (
-            <button key={number} onClick={() => paginate(number + 1)} className={currentPage === number + 1 ? 'active' : ''}>
-              {number + 1}
-            </button>
-          ))}
+          <Pagination count={totalPages} page={currentPage} onChange={handleChange} />
         </div>
       )}
     </div>
