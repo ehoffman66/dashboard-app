@@ -56,15 +56,12 @@ const BirthdayWidget = () => {
     const currentYear = today.getFullYear();
   
     return birthdays.sort((a, b) => {
-      // Create new date objects for each birthday, using the current year
       const aDate = new Date(currentYear, a.month - 1, a.day);
       const bDate = new Date(currentYear, b.month - 1, b.day);
   
-      // If a birthday has already occurred this year, consider it as next year's birthday
       if (aDate < today) aDate.setFullYear(currentYear + 1);
       if (bDate < today) bDate.setFullYear(currentYear + 1);
   
-      // Sort by the date each birthday will next occur
       return aDate - bDate;
     });
   };
