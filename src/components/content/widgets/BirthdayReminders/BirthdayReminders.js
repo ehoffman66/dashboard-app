@@ -53,29 +53,19 @@ const BirthdayWidget = () => {
 
   const sortBirthdays = (birthdays) => {
     const today = new Date();
-    const currentMonth = today.getMonth() + 1; // getMonth() is zero-based
-    const currentDay = today.getDate();
-
+    const currentYear = today.getFullYear();
+  
     return birthdays.sort((a, b) => {
-      const aMonth = parseInt(a.month);
-      const bMonth = parseInt(b.month);
-      const aDay = parseInt(a.day);
-      const bDay = parseInt(b.day);
-
-      if (aMonth === bMonth) {
-        if (aDay === bDay) return 0;
-        return (aDay < bDay) ? -1 : 1;
-      }
-
-      if (aMonth < currentMonth || (aMonth === currentMonth && aDay < currentDay)) {
-        return 1;
-      }
-
-      if (bMonth < currentMonth || (bMonth === currentMonth && bDay < currentDay)) {
-        return -1;
-      }
-
-      return (aMonth < bMonth) ? -1 : 1;
+      // Create new date objects for each birthday, using the current year
+      const aDate = new Date(currentYear, a.month - 1, a.day);
+      const bDate = new Date(currentYear, b.month - 1, b.day);
+  
+      // If a birthday has already occurred this year, consider it as next year's birthday
+      if (aDate < today) aDate.setFullYear(currentYear + 1);
+      if (bDate < today) bDate.setFullYear(currentYear + 1);
+  
+      // Sort by the date each birthday will next occur
+      return aDate - bDate;
     });
   };
 
