@@ -1,9 +1,11 @@
 .nasa-apod-widget {
-  width: 400px; /* adjust this to your liking */
-  height: 400px; /* adjust this to your liking */
-  text-align: center;
-  margin: 0 auto; /* centers the widget if its width is less than its container's width */
+  width: 100%; /* changed this line */
+  height: 100%; /* changed this line */
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nasa-apod-widget .apod-image {
@@ -24,7 +26,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
-  font-size: 30px;
+  font-size: 2vw;
   display: flex;
   justify-content: center;
   align-items: center;
