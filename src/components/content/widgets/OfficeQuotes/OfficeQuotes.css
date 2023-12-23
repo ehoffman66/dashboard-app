@@ -1,28 +1,44 @@
 .office-quotes-widget {
-    border-radius: 8px;
-    display: flex;
-    align-items: flex-start;
-    width: 500px;
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  width: 100%; /* changed this line */
+  max-width: 500px; /* added this line */
+}
+
+.office-quotes-widget .character-avatar {
+  width: 40%; /* changed this line */
+  height: 0; /* changed this line */
+  padding-bottom: 40%; /* added this line */
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; /* changed this line */
+  flex-shrink: 0;
+}
+
+.office-quotes-widget .quote {
+  font-style: italic;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.office-quotes-widget .character {
+  font-weight: bold;
+}
+
+/* added this media query */
+@media (max-width: 600px) {
+  .office-quotes-widget {
+    flex-direction: column;
+    align-items: center;
   }
-  
+
   .office-quotes-widget .character-avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-right: 10px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    flex-shrink: 0;
-  }
-  
-  .office-quotes-widget .quote {
-    font-style: italic;
+    width: 80%;
+    margin-right: 0;
     margin-bottom: 10px;
-    word-wrap: break-word;
   }
-  
-  .office-quotes-widget .character {
-    font-weight: bold;
-  }
+}
