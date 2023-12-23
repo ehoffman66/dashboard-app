@@ -8,9 +8,9 @@ const TodoWidget = () => {
   const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
   const [newTask, setNewTask] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [newCategory, setNewCategory] = useState(''); // New state for category
+  const [newCategory, setNewCategory] = useState(''); 
   const [editing, setEditing] = useState(null);
-  const [filter, setFilter] = useState('all'); // New state for filter
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks));
