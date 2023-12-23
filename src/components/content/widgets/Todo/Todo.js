@@ -18,11 +18,22 @@ const TodoWidget = () => {
 
   const addTask = () => {
     if (newTask.trim() !== '') {
-      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false, date: dueDate ? new Date(dueDate).toISOString() : null, category: newCategory }]);
+      const taskDate = dueDate ? new Date(dueDate + 'T00:00') : null;
+      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false, date: taskDate, category: newCategory }]);
       setNewTask('');
       setDueDate('');
       setNewCategory('');
     }
+  };
+
+  const editTaskDate = (taskId, newDate) => {
+    setTasks(tasks.map(task => {
+      if (task.id === taskId) {
+        const taskDate = newDate ? new Date(newDate + 'T00:00') : null;
+        return { ...task, date: taskDate };
+      }
+      return task;
+    }));
   };
 
   const deleteTask = (taskId) => {
@@ -115,6 +126,11 @@ const TodoWidget = () => {
                       onChange={(e) => editTask(task.id, e.target.value)}
                       autoFocus
                       onFocus={(e) => e.target.select()}
+                    />
+                    <input 
+                      type="date" 
+                      value={task.date ? new Date(task.date).toISOString().split('T')[0] : ''}
+                      onChange={(e) => editTaskDate(task.id, e.target.value)}
                     />
                     <button onClick={() => setEditing(null)}>Save</button>
                   </>
