@@ -4,6 +4,7 @@ import Drawer from '@mui/material/Drawer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SearchIcon from '@mui/icons-material/Search';
+import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import './Navbar.css';
 
@@ -62,15 +63,16 @@ const Navbar = ({ widgets, handleWidgetClick }) => {
             }}
           >
             <div className="drawer-content">
-              <h2 className="drawer-title">Settings</h2>
-              <div className="search-container">
+              <h2 className="drawer-title">Marketplace</h2>
+              <div className="search-container" style={{ width: '80%', margin: '0 auto' }}>
                 <SearchIcon className="search-icon" />
-                <input
-                  type="text"
+                <TextField
                   className="search-input"
-                  placeholder="Search widgets"
+                  label="Search Widgets"
                   value={searchTerm}
                   onChange={handleSearchChange}
+                  variant="standard"
+                  fullWidth
                 />
               </div>
               <ul className="widget-list">
