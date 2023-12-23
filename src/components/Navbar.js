@@ -1,67 +1,89 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart, faTimes, faSearch } from '@fortawesome/free-solid-svg-icons';
+import IconButton from '@mui/material/IconButton';
+import Drawer from '@mui/material/Drawer';
+import SettingsIcon from '@mui/icons-material/Settings';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SearchIcon from '@mui/icons-material/Search';
+import Grid from '@mui/material/Grid';
 import './Navbar.css';
 
-const Navbar = ({ widgets }) => {
-  const [isSidePanelOpen, setSidePanelOpen] = useState(false);
+const Navbar = ({ widgets, handleWidgetClick }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const [marketplaceOpen, setMarketplaceOpen] = useState(false);
 
   const handleMarketplaceClick = () => {
-    setSidePanelOpen(true);
-  };
-
-  const handleCloseClick = () => {
-    setSidePanelOpen(false);
+    setMarketplaceOpen(prevState => !prevState);
   };
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  const handleWidgetClick = (widget) => {
-    console.log(`Widget clicked: ${widget.title}`);
+  const toggleSettings = () => {
+    setSettingsOpen(!settingsOpen);
   };
 
-  const filteredWidgets = widgets.filter(widget =>
+  const filteredWidgets = widgets.filter((widget) =>
     widget.title && typeof widget.title === 'string' && widget.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="navbar">
-      <h1 className="navbar-title">DashPoint</h1>
-      <FontAwesomeIcon 
-        icon={faShoppingCart} 
-        className="navbar-marketplace" 
-        onClick={handleMarketplaceClick} 
-      />
-      {isSidePanelOpen && (
-        <div className={`side-panel ${isSidePanelOpen ? 'side-panel-open' : ''}`}>
-          <FontAwesomeIcon 
-            icon={faTimes} 
-            className="side-panel-close" 
-            onClick={handleCloseClick} 
-          />
-          <h2 className="side-panel-title">Marketplace</h2>
-          <div className="search-container">
-            <FontAwesomeIcon icon={faSearch} className="search-icon" />
-            <input
-              type="text"
-              className="search-input"
-              placeholder="Search widgets"
-              value={searchTerm}
-              onChange={handleSearchChange}
-            />
-          </div>
-          <ul className="widget-list">
-            {filteredWidgets.map((widget, index) => (
-              <li key={index} className="widget-list-item" onClick={() => handleWidgetClick(widget)}>
-                {widget.title}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <Grid container alignItems="center">
+        <Grid item xs style={{ textAlign: 'center' }}>
+          <h1 className="navbar-title">DashPoint</h1>
+        </Grid>
+        <Grid item>
+          <IconButton onClick={toggleSettings}>
+            <SettingsIcon />
+          </IconButton>
+          <Drawer 
+            anchor="right" 
+            open={settingsOpen} 
+            onClose={toggleSettings}
+            PaperProps={{ 
+              style: { width: '50%', maxWidth: '600px' }, 
+            }}
+          >
+            <div className="drawer-content">
+              <h2 className="drawer-title">Settings</h2>
+            </div>
+          </Drawer>
+          <IconButton onClick={handleMarketplaceClick}>
+            <ShoppingCartIcon />
+          </IconButton>
+          <Drawer 
+            anchor="right" 
+            open={marketplaceOpen} 
+            onClose={handleMarketplaceClick}
+            PaperProps={{ 
+              style: { width: '50%', maxWidth: '600px' }, 
+            }}
+          >
+            <div className="drawer-content">
+              <h2 className="drawer-title">Settings</h2>
+              <div className="search-container">
+                <SearchIcon className="search-icon" />
+                <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Search widgets"
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                />
+              </div>
+              <ul className="widget-list">
+                {filteredWidgets.map((widget, index) => (
+                  <li key={index} className="widget-list-item" onClick={() => handleWidgetClick(widget)}>
+                    {widget.title}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Drawer>
+        </Grid>
+      </Grid>
     </div>
   );
 };
