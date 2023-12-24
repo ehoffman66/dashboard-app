@@ -12,18 +12,16 @@ const WeatherWidget = () => {
     const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-    console.log('url', url);
     axios.get(url)
       .then(response => {
         setWeather(response.data);
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching weather data:', err);
         setError('Failed to load weather data.');
         setLoading(false);
       });
-  }, []); // Removed city from dependency array
+  }, []);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
