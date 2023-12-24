@@ -17,7 +17,6 @@ const NasaApodWidget = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching NASA APOD:', err);
         setError('Failed to load the Astronomy Picture of the Day.');
         setLoading(false);
       });
