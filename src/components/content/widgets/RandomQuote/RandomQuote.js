@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './RandomQuote.css';
 
-const RandomQuoteWidget = () => {
-  const [quote, setQuote] = useState({});
-  const [loading, setLoading] = useState(true);
+function RandomQuote() {
+  const [quote, setQuote] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    const fetchRandomQuote = async () => {
-      try {
-        const response = await axios.get('https://api.quotable.io/quotes/random');
-        setQuote(response.data[0]);
-        console.log(response.data[0]);
-      } catch (error) {
-        console.error('Error fetching a random quote:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchRandomQuote();
+    fetch('https://api.quotable.io/random')
+      .then(response => response.json())
+      .then(data => setQuote(data)) // set the entire data object to quote
+      .catch(error => {
+        setErrorMessage('Error fetching a random quote: ' + error.message);
+      });
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-
   return (
-    <div className="random-quote-widget">
-        <p className="quote">"{quote.content}"</p>
-        <p className="author">- {quote.author}</p>
+    <div>
+      {errorMessage ? (
+        <p>{errorMessage}</p>
+      ) : (
+        <div className="random-quote-widget">
+          <p className="quote">"{quote.content}"</p>
+          <p className="author">- {quote.author}</p>
+        </div>
+      )}
     </div>
   );
-};
+}
 
-export default RandomQuoteWidget;
+export default RandomQuote;
