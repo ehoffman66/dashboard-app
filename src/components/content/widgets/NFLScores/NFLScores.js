@@ -19,7 +19,6 @@ const NFLScoresContent = () => {
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error fetching NFL data:', err);
         setError('Failed to load NFL scores.');
         setLoading(false);
       });
