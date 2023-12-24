@@ -63,7 +63,19 @@ const TodoWidget = () => {
     setFilter(newFilter);
   };
 
-  const filteredTasks = tasks.filter(task => {
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (a.date && b.date) {
+      return new Date(a.date) - new Date(b.date);
+    } else if (a.date) {
+      return -1;
+    } else if (b.date) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  const filteredTasks = sortedTasks.filter(task => {
     let today = new Date();
     today.setHours(0, 0, 0, 0);
     const taskDate = new Date(task.date);
