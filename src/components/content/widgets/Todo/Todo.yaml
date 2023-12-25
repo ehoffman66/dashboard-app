@@ -1,0 +1,9 @@
+id: "todo"
+name: "Todo"
+description: "Shows a todo list."
+thumbnail: "images/nasa-apod-thumbnail.png"
+author: "Dashboard Widgets Inc."
+version: "1.0.0"
+category: "Productivity"
+tags: ["todo", "list", "productivity"]
+```
