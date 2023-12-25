@@ -8,7 +8,7 @@ function RandomQuote() {
   useEffect(() => {
     fetch('https://api.quotable.io/random')
       .then(response => response.json())
-      .then(data => setQuote(data)) // set the entire data object to quote
+      .then(data => setQuote(data))
       .catch(error => {
         setErrorMessage('Error fetching a random quote: ' + error.message);
       });
