@@ -10,8 +10,8 @@
   
   .weather-info img {
     margin-right: 10px;
-    width: 120px; /* Adjust as needed */
-    height: 120px; /* Adjust as needed */
+    width: 120px;
+    height: 120px;
   }
 
   .weather-widget .weather-info p {
