@@ -48,4 +48,24 @@
   border-radius: 4px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bookmark-list-item a {
+  color: #0056b3;
+  text-decoration: none;
+}
+
+.bookmark-list-item img {
+  border-radius: 50%;
+}
+
+.bookmark-list-item .MuiSvgIcon-root {
+  color: #f00;
+  cursor: pointer;
+}
+
+.bookmark-list-item .MuiSvgIcon-root:hover {
+  color: #c00;
 }

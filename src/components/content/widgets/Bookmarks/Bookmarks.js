@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './Bookmarks.css'; // Ensure this is the correct path to your CSS file
+import DeleteIcon from '@mui/icons-material/Delete';
+import './Bookmarks.css'; 
 
 const BookmarkComponent = () => {
   const [bookmarks, setBookmarks] = useState([]);
@@ -73,16 +74,14 @@ const BookmarkComponent = () => {
         {bookmarks.map((bookmark, index) => {
           const domain = new URL(bookmark).hostname;
           const faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}`;
-  
+
           return (
             <li key={index} className="bookmark-list-item">
               <img src={faviconUrl} alt="Favicon" />
               <a href={bookmark} target="_blank" rel="noopener noreferrer">
                 {formatDisplayUrl(bookmark)}
               </a>
-              <button onClick={() => removeBookmark(index)} className="bookmark-remove-btn">
-                Remove
-              </button>
+              <DeleteIcon style={{ color: '#f00', cursor: 'pointer' }} onClick={() => removeBookmark(index)} />
             </li>
           );
         })}
