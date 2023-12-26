@@ -6,7 +6,7 @@ const ITEMS_PER_PAGE = 10;
 const F1StandingsWidget = () => {
   const [standings, setStandings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [standingsType, setStandingsType] = useState('driver'); // 'driver' or 'constructor'
+  const [standingsType, setStandingsType] = useState('driver');
 
   useEffect(() => {
     fetch(`https://ergast.com/api/f1/current/${standingsType}Standings.json`)
