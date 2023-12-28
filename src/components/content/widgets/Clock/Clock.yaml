@@ -1,8 +1,0 @@
-id: "clock-widget"
-name: "Clock"
-description: "Displays the current time in different time zones."
-thumbnail: "images/clock-thumbnail.png"
-author: "Dashboard Widgets Inc."
-version: "1.0.0"
-category: "Utility"
-tags: ["time", "clock", "timezone"]

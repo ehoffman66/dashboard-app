@@ -1,9 +1,0 @@
-id: "met-art-widget"
-name: "MET Art"
-description: "Shows the current MET Art."
-thumbnail: "images/nasa-apod-thumbnail.png"
-author: "Dashboard Widgets Inc."
-version: "1.0.0"
-category: "Science"
-tags: ["met", "art", "picture", "space", "science"]
-```
