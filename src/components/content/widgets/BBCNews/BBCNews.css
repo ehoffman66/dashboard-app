@@ -1,0 +1,25 @@
+.bbc-news-widget {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bbc-news-widget h2 {
+    margin-bottom: 10px;
+  }
+  
+  .bbc-news-widget ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .bbc-news-widget li {
+    margin-bottom: 5px;
+  }
+  
+  .bbc-news-widget li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
