@@ -1,0 +1,25 @@
+.github-activity-widget {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.github-activity-widget h2 {
+    color: #0366d6;
+    font-size: 1.2em;
+}
+
+.github-activity-widget ul {
+    list-style: none;
+    padding: 0;
+}
+
+.github-activity-widget li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.github-activity-widget li:last-child {
+    border-bottom: none;
+}
