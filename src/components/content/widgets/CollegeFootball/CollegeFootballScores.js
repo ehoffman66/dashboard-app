@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Pagination from '@mui/material/Pagination';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -28,7 +29,6 @@ const CollegeFootballScores = () => {
         const response = await axios.get('https://site.api.espn.com/apis/site/v2/sports/football/college-football/rankings');
         setRankings(response.data.rankings[0]['ranks'].slice(0, 25));
         setLoading(false);
-        console.log(response.data.rankings[0]['ranks'].slice(0, 25));
       } catch (error) {
         setError('Failed to load College Football rankings.');
         setLoading(false);
@@ -42,8 +42,8 @@ const CollegeFootballScores = () => {
     }
   }, [view]);
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
   };
 
   const currentPageData = view === 'scores' ? scores.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE) : rankings;
@@ -107,13 +107,7 @@ const CollegeFootballScores = () => {
           </>
         )}
       </div>
-      <div className="pagination">
-        {Array(Math.ceil((view === 'scores' ? scores.length : rankings.length) / ITEMS_PER_PAGE)).fill().map((_, index) => (
-          <button key={index} onClick={() => handlePageChange(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      <Pagination count={Math.ceil((view === 'scores' ? scores.length : rankings.length) / ITEMS_PER_PAGE)} page={currentPage} onChange={handlePageChange} />
     </div>
   );
 };
