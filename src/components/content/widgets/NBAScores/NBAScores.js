@@ -62,7 +62,9 @@ const NBAScoresContent = () => {
           );
         })}
       </div>
-      <Pagination count={Math.ceil(scoreboard?.events?.length / ITEMS_PER_PAGE)} page={currentPage} onChange={handlePageChange} />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+        <Pagination count={Math.ceil(scoreboard?.events?.length / ITEMS_PER_PAGE)} page={currentPage} onChange={handlePageChange} />
+      </div>
     </div>
   );
 };
