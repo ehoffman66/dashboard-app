@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
-import './NFLScores.css'; // Ensure this is the path to your CSS file
+
+const ITEMS_PER_PAGE = 6;
 
 const NFLScoresContent = () => {
   const [scoreboard, setScoreboard] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [gamesPerPage] = useState(6); // Number of games you want per page
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiEndpoint = 'https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard';
-
-    axios.get(apiEndpoint)
+    axios.get('https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard')
       .then(response => {
         setScoreboard(response.data);
         setLoading(false);
@@ -37,15 +35,11 @@ const NFLScoresContent = () => {
     });
   };
 
-  const lastGameIndex = currentPage * gamesPerPage;
-  const firstGameIndex = lastGameIndex - gamesPerPage;
-  const currentGames = scoreboard?.events?.slice(firstGameIndex, lastGameIndex);
-
-  const totalPages = scoreboard?.events ? Math.ceil(scoreboard.events.length / gamesPerPage) : 0;
-
   const handleChange = (event, value) => {
     setCurrentPage(value);
   };
+
+  const currentGames = scoreboard?.events?.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
   if (loading) return <div>Loading NFL scores...</div>;
   if (error) return <div>{error}</div>;
@@ -72,11 +66,9 @@ const NFLScoresContent = () => {
           );
         })}
       </div>
-      {totalPages > 1 && (
-        <div className="pagination">
-          <Pagination count={totalPages} page={currentPage} onChange={handleChange} />
-        </div>
-      )}
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '20px' }}>
+        <Pagination count={Math.ceil(scoreboard?.events?.length / ITEMS_PER_PAGE)} page={currentPage} onChange={handleChange} />
+      </div>
     </div>
   );
 };
