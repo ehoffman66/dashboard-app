@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Pagination from '@mui/material/Pagination';
 import './NBAScores.css';
 
 const ITEMS_PER_PAGE = 6;
@@ -32,8 +33,8 @@ const NBAScoresContent = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
   };
 
   const currentPageEvents = scoreboard?.events?.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
@@ -61,13 +62,7 @@ const NBAScoresContent = () => {
           );
         })}
       </div>
-      <div className="pagination">
-        {Array(Math.ceil((scoreboard?.events?.length || 0) / ITEMS_PER_PAGE)).fill().map((_, index) => (
-          <button key={index} onClick={() => handlePageChange(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      <Pagination count={Math.ceil(scoreboard?.events?.length / ITEMS_PER_PAGE)} page={currentPage} onChange={handlePageChange} />
     </div>
   );
 };
