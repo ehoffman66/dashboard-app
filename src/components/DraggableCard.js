@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 import { NFLContent, NHLScoresContent, NBAScoresContent, ClockContent, 
     BitcoinPriceContent, BookmarkComponent, F1StandingsWidget, 
     CollegeFootballScores, NASAApod, BirthdayReminder, OfficeQuotes, 
-    Weather, HackerNews, RandomQuote, METArt, Todo } from './content/widgets';
+    Weather, HackerNews, RandomQuote, METArt, Todo, GithubActivity } from './content/widgets';
 import './DraggableCard.css';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -27,6 +27,7 @@ const contentComponents = {
   RandomQuote: RandomQuote,
   METArt: METArt,
   Todo: Todo,
+  GithubActivity: GithubActivity,
 };
 
 const DraggableCard = ({ id, title, content, position: { x, y }, onControlledDrag }) => {
