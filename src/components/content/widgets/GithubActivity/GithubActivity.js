@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './GitHubActivityWidget.css';
+import './GithubActivity.css';
 
-const GitHubActivityWidget = ({ ehoffman66 }) => {
+const GitHubActivityWidget = ({ username }) => {
     const [activityData, setActivityData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
