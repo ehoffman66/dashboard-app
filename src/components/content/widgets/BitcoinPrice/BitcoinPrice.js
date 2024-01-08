@@ -8,21 +8,28 @@ const BitcoinPriceContent = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    let intervalId;
+
     const fetchBitcoinPrice = async () => {
       try {
         const response = await axios.get('https://api.coindesk.com/v1/bpi/currentprice.json');
         setBitcoinData(response.data.bpi.USD.rate_float);
         setLoading(false);
+        setError(null);
+        intervalId = setInterval(fetchBitcoinPrice, 60000); // Fetch price every minute
       } catch (error) {
         setError('Failed to load Bitcoin price.');
         setLoading(false);
+        intervalId = setTimeout(fetchBitcoinPrice, 60000); // Try again after a minute
       }
     };
 
     fetchBitcoinPrice();
-    const intervalId = setInterval(fetchBitcoinPrice, 60000); // Fetch price every minute
 
-    return () => clearInterval(intervalId); // Clean up the interval on component unmount
+    return () => {
+      clearInterval(intervalId); // Clean up the interval on component unmount
+      clearTimeout(intervalId); // Also clear the timeout
+    };
   }, []);
 
   const formattedPrice = bitcoinData
