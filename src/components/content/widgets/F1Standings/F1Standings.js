@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Pagination from '@mui/material/Pagination';
 import './F1Standings.css';
 
 const ITEMS_PER_PAGE = 10;
@@ -23,8 +24,8 @@ const F1StandingsWidget = () => {
       .catch(error => console.log('There was a problem with the fetch operation: ' + error.message));
   }, [standingsType]);
 
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
   };
 
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -61,13 +62,22 @@ const F1StandingsWidget = () => {
           </li>
         ))}
       </ul>
-      <div className="pagination">
-        {Array(Math.ceil(standings.length / ITEMS_PER_PAGE)).fill().map((_, index) => (
-          <button className="pagination-button" key={index} onClick={() => handlePageChange(index + 1)}>
-            {index + 1}
-          </button>
-        ))}
-      </div>
+      <Pagination 
+        count={Math.ceil(standings.length / ITEMS_PER_PAGE)} 
+        page={currentPage} 
+        onChange={handlePageChange} 
+        sx={{
+          '& .MuiPaginationItem-root': {
+            color: '#007BFF',
+          },
+          '& .Mui-selected': {
+            backgroundColor: 'transparent',
+          },
+          '& .MuiPaginationItem-page:hover': {
+            backgroundColor: '#e9ecef',
+          },
+        }}
+      />
     </div>
   );
 };
