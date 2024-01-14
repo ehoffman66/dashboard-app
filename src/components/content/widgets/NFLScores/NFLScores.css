@@ -79,3 +79,8 @@
   background-color: #ccc;
   font-weight: bold;
 }
+
+.team.win {
+  font-weight: bold !important;
+  color: rgb(201, 117, 117) !important;
+}

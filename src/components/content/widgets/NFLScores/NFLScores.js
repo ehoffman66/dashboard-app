@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
+import './NFLScores.css';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -48,20 +49,30 @@ const NFLScoresContent = () => {
     <div className="nfl-scores-content">
       <div className="games-grid">
         {currentGames?.map((event, index) => {
-          const isScheduled = event.status.type.description === "Scheduled";
+          const homeTeam = event.competitions[0].competitors.find(comp => comp.homeAway === 'home');
+          const awayTeam = event.competitions[0].competitors.find(comp => comp.homeAway === 'away');
+          const homeScore = parseInt(homeTeam.score);
+          const awayScore = parseInt(awayTeam.score);
+          const homeWin = homeScore > awayScore;
+          const awayWin = awayScore > homeScore;
+
           return (
             <div key={index} className="game">
               <div className="game-status">
-                {isScheduled ? formatDate(event.competitions[0].date) : event.status.type.description}
+                {event.status.type.description === "Scheduled" ? formatDate(event.competitions[0].date) : event.status.type.description}
               </div>
-              {event.competitions[0]?.competitors?.sort((a, b) => a.homeAway === 'home' ? 1 : -1).map((team) => (
-                <div key={team.id} className="team">
-                  {team.team.logo && (
-                    <img src={team.team.logo} alt={`${team.team.displayName} Logo`} className="team-logo" />
-                  )}
-                  <span>{team.team.displayName} {isScheduled ? '' : `- ${team.score}`}</span>
-                </div>
-              ))}
+              <div className={`team ${homeWin ? 'win' : ''}`}>
+                {homeTeam.team.logo && (
+                  <img src={homeTeam.team.logo} alt={`${homeTeam.team.displayName} Logo`} className="team-logo" />
+                )}
+                <span>{homeTeam.team.displayName} {event.status.type.description === "Scheduled" ? '' : `- ${homeTeam.score}`}</span>
+              </div>
+              <div className={`team ${awayWin ? 'win' : ''}`}>
+                {awayTeam.team.logo && (
+                  <img src={awayTeam.team.logo} alt={`${awayTeam.team.displayName} Logo`} className="team-logo" />
+                )}
+                <span>{awayTeam.team.displayName} {event.status.type.description === "Scheduled" ? '' : `- ${awayTeam.score}`}</span>
+              </div>
             </div>
           );
         })}
